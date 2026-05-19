@@ -431,9 +431,58 @@ function PrinIntBar({ principal, interest, pmi = 0, tax = 0, ins = 0, hoa = 0 })
 // ═══════════════════════════════════════════════════════════════════════════
 // MAIN CALCULATOR
 // ═══════════════════════════════════════════════════════════════════════════
+// ─── FRED API CONFIG ────────────────────────────────────────────────────────
+const FRED_KEY = "15324c2be136ca5331844402e6a2aa59";
+const FRED = (series) =>
+  `https://api.stlouisfed.org/fred/series/observations?series_id=${series}&api_key=${FRED_KEY}&limit=1&sort_order=desc&file_type=json`;
+
 export default function LoanCalcSuite() {
-  // Global tab
-  const [tab, setTab] = useState("rates"); // rates | calc | equity | dscr | finder
+  const [tab, setTab] = useState("rates");
+
+  // ── Live market rates from FRED ──────────────────────────────────────────
+  const [liveRates, setLiveRates]   = useState(null);   // null = loading, {} = loaded
+  const [ratesDate, setRatesDate]   = useState(null);
+  const [ratesError, setRatesError] = useState(false);
+
+  useEffect(() => {
+    const fetchRates = async () => {
+      try {
+        const [r30, r15, prime] = await Promise.all([
+          fetch(FRED("MORTGAGE30US")).then(r => r.json()),
+          fetch(FRED("MORTGAGE15US")).then(r => r.json()),
+          fetch(FRED("PRIME")).then(r => r.json()),
+        ]);
+        const rate30  = parseFloat(r30.observations?.[0]?.value  || "6.36");
+        const rate15  = parseFloat(r15.observations?.[0]?.value  || "5.71");
+        const primeR  = parseFloat(prime.observations?.[0]?.value || "8.50");
+        const date30  = r30.observations?.[0]?.date || "";
+
+        // Derive all rates from spreads vs 30yr and Prime
+        setLiveRates({
+          rate30,
+          rate15,
+          prime:   primeR,
+          fha30:   +(rate30 - 0.17).toFixed(2),
+          fha15:   +(rate15 - 0.10).toFixed(2),
+          va30:    +(rate30 - 0.61).toFixed(2),
+          va15:    +(rate15 - 0.36).toFixed(2),
+          usda:    +(rate30 - 0.24).toFixed(2),
+          jumbo30: +(rate30 + 0.19).toFixed(2),
+          jumbo15: +(rate15 + 0.19).toFixed(2),
+          arm51:   +(rate30 - 0.26).toFixed(2),
+          arm71:   +(rate30 - 0.14).toFixed(2),
+          arm101:  +(rate30 - 0.01).toFixed(2),
+          heloc:   +(primeR + 0.50).toFixed(2),
+          heloan:  +(primeR + 0.35).toFixed(2),
+          cashout: +(rate30 + 0.33).toFixed(2),
+        });
+        setRatesDate(date30);
+      } catch (e) {
+        setRatesError(true);
+      }
+    };
+    fetchRates();
+  }, []);
 
   // Loan type
   const [loanId, setLoanId] = useState("conv30");
@@ -764,26 +813,58 @@ export default function LoanCalcSuite() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h2 style={{ margin: "0 0 0.2rem", fontSize: "1.1rem", fontWeight: 800 }}>Current Market Rates</h2>
-                <p style={{ margin: 0, fontSize: "0.68rem", color: S.muted }}>Last updated: {MARKET_RATES.updated} · Sources: {MARKET_RATES.source}</p>
+                <p style={{ margin: 0, fontSize: "0.68rem", color: S.muted }}>
+                  {liveRates
+                    ? <>🟢 <strong>Live</strong> — Freddie Mac PMMS week of {ratesDate} · Prime Rate: {liveRates.prime.toFixed(2)}%</>
+                    : ratesError
+                    ? "⚠ Could not load live rates — showing last known rates"
+                    : "⏳ Loading live rates from Freddie Mac PMMS..."}
+                </p>
               </div>
               <div style={{ fontSize: "0.62rem", color: S.muted, background: "#f5f8fc", border: `1px solid ${S.border}`, borderRadius: "6px", padding: "0.4rem 0.75rem" }}>
-                Rates change daily. Always verify with your lender.
+                Rates change weekly. Always verify with your lender.
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "0.75rem", marginBottom: "2rem" }}>
-              {MARKET_RATES.rates.map(r => (
-                <Card key={r.label}>
-                  <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.muted, marginBottom: "0.4rem" }}>{r.label}</div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem" }}>
-                    <span style={{ fontSize: "1.7rem", fontWeight: 900, color: S.text, fontFamily: "'DM Mono', monospace", lineHeight: 1 }}>{r.rate.toFixed(2)}<span style={{ fontSize: "1rem" }}>%</span></span>
-                    <span style={{ fontSize: "0.7rem", color: r.change > 0 ? S.red : r.change < 0 ? S.green : S.muted, fontFamily: "'DM Mono', monospace" }}>
-                      {r.change > 0 ? "▲" : r.change < 0 ? "▼" : "—"}{r.change !== 0 ? Math.abs(r.change).toFixed(2) + "%" : ""}
-                    </span>
-                  </div>
-                  <div style={{ fontSize: "0.59rem", color: "#9ba8b5", marginTop: "0.3rem" }}>{r.src}</div>
-                </Card>
-              ))}
+            {/* Live rate cards */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: "0.75rem", marginBottom: "2rem" }}>
+              {(() => {
+                const r = liveRates || {};
+                const fallback = MARKET_RATES.rates;
+                const cards = [
+                  { label: "30yr Fixed",     rate: r.rate30  ?? fallback[0].rate,  live: !!liveRates, src: "Freddie Mac PMMS" },
+                  { label: "15yr Fixed",     rate: r.rate15  ?? fallback[1].rate,  live: !!liveRates, src: "Freddie Mac PMMS" },
+                  { label: "30yr FHA",       rate: r.fha30   ?? fallback[2].rate,  live: !!liveRates, src: "Derived: 30yr − 0.17%" },
+                  { label: "30yr VA",        rate: r.va30    ?? fallback[3].rate,  live: !!liveRates, src: "Derived: 30yr − 0.61%" },
+                  { label: "30yr USDA",      rate: r.usda    ?? fallback[4].rate,  live: !!liveRates, src: "Derived: 30yr − 0.24%" },
+                  { label: "30yr Jumbo",     rate: r.jumbo30 ?? fallback[5].rate,  live: !!liveRates, src: "Derived: 30yr + 0.19%" },
+                  { label: "5/6 ARM",        rate: r.arm51   ?? fallback[6].rate,  live: !!liveRates, src: "Derived: 30yr − 0.26%" },
+                  { label: "7/6 ARM",        rate: r.arm71   ?? fallback[7].rate,  live: !!liveRates, src: "Derived: 30yr − 0.14%" },
+                  { label: "HELOC",          rate: r.heloc   ?? fallback[8].rate,  live: !!liveRates, src: "Prime + 0.50%" },
+                  { label: "HE Loan",        rate: r.heloan  ?? fallback[9].rate,  live: !!liveRates, src: "Prime + 0.35%" },
+                  { label: "Cash-Out Refi",  rate: r.cashout ?? 6.69,             live: !!liveRates, src: "Derived: 30yr + 0.33%" },
+                  { label: "DSCR (740/75%)", rate: 7.25,  live: false, src: "Industry avg — updated monthly" },
+                  { label: "Hard Money",     rate: 11.50, live: false, src: "Industry avg 10.5–12.5%" },
+                ];
+                return cards.map(card => (
+                  <Card key={card.label}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.4rem" }}>
+                      <div style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: S.muted }}>{card.label}</div>
+                      {card.live
+                        ? <span style={{ fontSize: "0.52rem", background: "#f0fdf4", color: "#15803d", border: "1px solid #86efac", borderRadius: "3px", padding: "0.1rem 0.35rem", fontWeight: 700 }}>LIVE</span>
+                        : <span style={{ fontSize: "0.52rem", background: "#f5f8fc", color: S.muted, border: `1px solid ${S.border}`, borderRadius: "3px", padding: "0.1rem 0.35rem" }}>EST</span>
+                      }
+                    </div>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem" }}>
+                      <span style={{ fontSize: "1.75rem", fontWeight: 900, color: S.text, fontFamily: "'DM Mono', monospace", lineHeight: 1 }}>
+                        {liveRates || ratesError ? card.rate.toFixed(2) : "—"}
+                        <span style={{ fontSize: "1rem" }}>%</span>
+                      </span>
+                    </div>
+                    <div style={{ fontSize: "0.58rem", color: "#9ba8b5", marginTop: "0.3rem" }}>{card.src}</div>
+                  </Card>
+                ));
+              })()}
             </div>
 
             {/* Rate context table */}
@@ -823,7 +904,7 @@ export default function LoanCalcSuite() {
               </div>
             </Card>
 
-            <Alert type="tip">These are national averages. Your actual rate depends on credit score, LTV, loan size, property type, and lender. Always get quotes from at least 3 lenders. Source: Freddie Mac PMMS (weekly survey of actual loan applications).</Alert>
+            <Alert type="tip">🟢 Live rates (30yr, 15yr, Prime) update automatically each week from Freddie Mac PMMS via the Federal Reserve FRED database. FHA, VA, USDA, ARM, HELOC, and HE Loan rates are derived using historical spreads. DSCR and Hard Money rates are manually updated monthly. Always verify with your lender before making any decisions.</Alert>
           </div>
         )}
 

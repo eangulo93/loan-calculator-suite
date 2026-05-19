@@ -521,12 +521,7 @@ export default function LoanCalcSuite() {
   const [rfLoan,    setRfLoan]    = useState(300000);
   const [rfPayment, setRfPayment] = useState(1900);
   const [rfTerm,    setRfTerm]    = useState(30);
-  const [rfKnow,    setRfKnow]    = useState("payment");
-  const [rfHomeVal, setRfHomeVal] = useState(375000);
-  const [rfTax,     setRfTax]     = useState(350);
-  const [rfIns,     setRfIns]     = useState(150);
-  const [rfHOA,     setRfHOA]     = useState(0);
-  const [rfShowTax, setRfShowTax] = useState(false);
+  const [rfKnow,    setRfKnow]    = useState("payment"); // payment | loanamt | term
 
   // UI
   const [amortView,  setAmortView]  = useState("annual");
@@ -669,23 +664,10 @@ export default function LoanCalcSuite() {
 
   // Rate finder
   const foundRate = useMemo(() => {
-    const piPayment = rfShowTax
-      ? Math.max(1, rfPayment - rfTax - rfIns - rfHOA)
-      : rfPayment;
-    if (rfKnow === "payment") return solveRate(rfLoan, piPayment, rfTerm * 12);
+    if (rfKnow === "payment") return solveRate(rfLoan, rfPayment, rfTerm * 12);
     return 0;
-  }, [rfKnow, rfLoan, rfPayment, rfTerm, rfShowTax, rfTax, rfIns, rfHOA]);
+  }, [rfKnow, rfLoan, rfPayment, rfTerm]);
   const rfMonthlyNeeded = calcMP(rfLoan, foundRate, rfTerm * 12);
-  // PITI extras
-  const rfLTV          = rfHomeVal > 0 ? rfLoan / rfHomeVal : 0;
-  const rfPMI          = rfLTV > 0.8 && rfLTV < 1 ? (rfLoan * 0.0085) / 12 : 0;
-  const rfPMIDropMonth = useMemo(() => {
-    if (rfPMI === 0 || foundRate === 0) return null;
-    const sched = buildAmort(rfLoan, foundRate * 100, rfTerm * 12);
-    const idx = sched.findIndex(r => r.balance <= rfHomeVal * 0.8);
-    return idx >= 0 ? idx + 1 : null;
-  }, [rfLoan, foundRate, rfTerm, rfHomeVal, rfPMI]);
-  const rfTotalPITI    = rfPayment + rfTax + rfIns + rfHOA + rfPMI;
 
   // ── CSS inject ──────────────────────────────────────────────────────────
   useEffect(() => {
@@ -2090,226 +2072,70 @@ export default function LoanCalcSuite() {
             TAB: RATE FINDER
         ══════════════════════════════════════════════════════════════════ */}
         {tab === "finder" && (
-          <div style={{ maxWidth: 900, margin: "0 auto" }}>
-            <h2 style={{ fontSize: "1.1rem", fontWeight: 800, margin: "0 0 0.35rem" }}>Rate Finder & Payment Breakdown</h2>
-            <p style={{ color: S.muted, fontSize: "0.75rem", margin: "0 0 1.5rem" }}>Enter your loan balance, payment, and term to find your implied interest rate. Add tax, insurance, and PMI to see your true total monthly cost — and whether you're paying PMI when you don't need to.</p>
+          <div style={{ maxWidth: 800, margin: "0 auto" }}>
+            <h2 style={{ fontSize: "1.1rem", fontWeight: 800, margin: "0 0 0.35rem" }}>Rate Finder</h2>
+            <p style={{ color: S.muted, fontSize: "0.75rem", margin: "0 0 1.5rem" }}>Know your payment and loan amount? Find the implied rate. Or solve for any missing variable.</p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "minmax(280px,1fr) minmax(280px,1.2fr)", gap: "1.25rem", marginBottom: "1.25rem" }}>
-
-              {/* LEFT — Inputs */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem", marginBottom: "1.25rem" }}>
               <div>
-                <Card style={{ marginBottom: "1rem" }}>
-                  <SectionHead label="Your Loan" />
-                  <Alert type="tip">Enter three numbers from your mortgage statement. We'll calculate your exact interest rate and show what your payment is really made of.</Alert>
-                  <DualInput label="Current Loan Balance" value={rfLoan} min={1000} max={5000000} step={1000} onChange={setRfLoan} prefix="$" integer note="From your latest statement — not the original loan amount." />
-                  <DualInput label="Remaining Term" value={rfTerm} min={1} max={40} step={1} onChange={setRfTerm} suffix=" years" note="Years remaining on the loan — not the original term." />
-
-                  {/* Payment input — P&I or total */}
-                  <div style={{ borderTop: `1px solid ${S.dim}`, paddingTop: "1rem", marginTop: "0.25rem" }}>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.6rem" }}>
-                      <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.muted }}>My payment includes taxes &amp; insurance</span>
-                      <button onClick={() => setRfShowTax(v => !v)} style={{ width: "40px", height: "22px", borderRadius: "11px", background: rfShowTax ? S.green : "#d1d8e0", border: "none", cursor: "pointer", position: "relative", transition: "background 0.2s", flexShrink: 0 }}>
-                        <div style={{ position: "absolute", top: "3px", left: rfShowTax ? "21px" : "3px", width: "16px", height: "16px", borderRadius: "50%", background: "#fff", transition: "left 0.2s", boxShadow: "0 1px 3px rgba(0,0,0,0.2)" }} />
-                      </button>
-                    </div>
-
-                    {!rfShowTax && (
-                      <DualInput label="Monthly P&I Payment" value={rfPayment} min={100} max={50000} step={10} onChange={setRfPayment} prefix="$" integer note="Principal & Interest ONLY — do not include tax, insurance, PMI, or HOA." />
-                    )}
-
-                    {rfShowTax && (
-                      <>
-                        <DualInput label="Total Monthly Payment (as paid)" value={rfPayment} min={100} max={50000} step={10} onChange={setRfPayment} prefix="$" integer note="Enter exactly what you pay each month — from your bank statement or coupon book." />
-                        <DualInput label="Monthly Property Tax" value={rfTax} min={0} max={3000} step={10} onChange={setRfTax} prefix="$" suffix="/mo" integer note="Annual property tax ÷ 12. Find on your county assessor site or mortgage statement." />
-                        <DualInput label="Monthly Homeowners Insurance" value={rfIns} min={0} max={1000} step={10} onChange={setRfIns} prefix="$" suffix="/mo" integer note="Annual insurance premium ÷ 12. Check your insurance declarations page." />
-                        <DualInput label="HOA Fees" value={rfHOA} min={0} max={2000} step={25} onChange={setRfHOA} prefix="$" suffix="/mo" integer note="Enter 0 if not applicable." />
-
-                        {/* Live P&I extraction */}
-                        <div style={{ background: "#eff8ff", border: "1px solid #bae6fd", borderRadius: "8px", padding: "0.8rem 1rem", marginBottom: "1rem" }}>
-                          <div style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.accent, marginBottom: "0.45rem" }}>Extracted P&amp;I (used to find rate)</div>
-                          {[
-                            { l: "Total payment entered",         v: rfPayment },
-                            { l: "− Property tax",                v: rfTax },
-                            { l: "− Homeowners insurance",        v: rfIns },
-                            { l: "− HOA",                        v: rfHOA },
-                          ].filter(r => r.v > 0 || r.l === "Total payment entered").map(r => (
-                            <div key={r.l} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.68rem", color: S.muted, marginBottom: "0.18rem" }}>
-                              <span>{r.l}</span>
-                              <span style={{ fontFamily: "'DM Mono',monospace", color: S.text }}>{$2(r.v)}</span>
-                            </div>
-                          ))}
-                          <div style={{ height: "1px", background: "#bae6fd", margin: "0.4rem 0" }} />
-                          <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700 }}>
-                            <span style={{ fontSize: "0.72rem", color: S.accent }}>Est. P&amp;I (before PMI)</span>
-                            <span style={{ fontSize: "0.85rem", fontFamily: "'DM Mono',monospace", color: S.accent }}>{$2(Math.max(0, rfPayment - rfTax - rfIns - rfHOA))}</span>
-                          </div>
-                          {rfPayment - rfTax - rfIns - rfHOA < 200 && (
-                            <p style={{ fontSize: "0.62rem", color: S.red, margin: "0.4rem 0 0" }}>⚠ Extracted P&I seems too low — check your tax and insurance amounts.</p>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </Card>
-
-                {/* Home value & PMI */}
                 <Card>
-                  <SectionHead label="Home Value & PMI Check" />
-                  <DualInput label="Current Home Value" value={rfHomeVal} min={10000} max={5000000} step={5000} onChange={setRfHomeVal} prefix="$" integer note="Used to calculate your LTV and check whether PMI applies. Use Zillow or Redfin for an estimate." />
-
-                  {rfLTV > 0 && rfLTV <= 0.8 && (
-                    <Alert type="good">LTV is {pc(rfLTV * 100)} — under 80%. No PMI required on conventional loans. If you're paying PMI, contact your lender — you may be eligible to cancel it.</Alert>
-                  )}
-
-                  {rfLTV > 0.8 && rfLTV < 1 && (
-                    <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: "8px", padding: "0.85rem 1rem" }}>
-                      <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.red, marginBottom: "0.3rem" }}>PMI Likely Applies</div>
-                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.25rem" }}>
-                        <span style={{ fontSize: "0.71rem", color: "#991b1b" }}>Your LTV</span>
-                        <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 700, color: S.red, fontSize: "0.82rem" }}>{pc(rfLTV * 100)}</span>
-                      </div>
-                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.25rem" }}>
-                        <span style={{ fontSize: "0.71rem", color: "#991b1b" }}>Est. Monthly PMI</span>
-                        <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 700, color: S.red, fontSize: "0.82rem" }}>{$2(rfPMI)}/mo</span>
-                      </div>
-                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                        <span style={{ fontSize: "0.71rem", color: "#991b1b" }}>Balance to cancel PMI</span>
-                        <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 700, color: S.text, fontSize: "0.82rem" }}>{$(rfHomeVal * 0.8)}</span>
-                      </div>
-                      {rfPMIDropMonth && (
-                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                          <span style={{ fontSize: "0.71rem", color: "#991b1b" }}>Est. months until PMI cancels</span>
-                          <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 700, color: S.text, fontSize: "0.82rem" }}>Month {rfPMIDropMonth}</span>
-                        </div>
-                      )}
-                      <div style={{ fontSize: "0.62rem", color: "#b91c1c", borderTop: "1px solid #fecaca", paddingTop: "0.45rem", lineHeight: 1.5 }}>
-                        PMI estimated at 0.85%/yr industry average. Check your mortgage statement for your actual PMI charge. You have the legal right to request PMI cancellation when balance reaches 80% LTV (Homeowners Protection Act).
-                      </div>
-                    </div>
-                  )}
+                  <SectionHead label="Solve For: Interest Rate" />
+                  <Alert type="tip">Enter your loan amount, desired (or quoted) monthly P&I payment, and term. We'll calculate the implied rate — useful for reverse-engineering a lender quote or finding out what rate you're actually being charged.</Alert>
+                  <DualInput label="Loan Amount" value={rfLoan} min={1000} max={5000000} step={1000} onChange={setRfLoan} prefix="$" integer />
+                  <DualInput label="Monthly P&I Payment" value={rfPayment} min={100} max={50000} step={10} onChange={setRfPayment} prefix="$" note="Principal & Interest only — not including tax, insurance, PMI, or HOA." integer />
+                  <DualInput label="Loan Term" value={rfTerm} min={1} max={40} step={1} onChange={setRfTerm} suffix=" years" />
                 </Card>
               </div>
 
-              {/* RIGHT — Results */}
               <div>
-                {/* Implied rate */}
-                <div style={{ background: "linear-gradient(135deg,#eff8ff,#e0f2fe)", border: "1px solid #bae6fd", borderRadius: "13px", padding: "1.5rem", marginBottom: "1rem" }}>
+                <div style={{ background: `linear-gradient(135deg, #eff8ff, #e0f2fe)`, border: "1px solid #bae6fd", borderRadius: "13px", padding: "1.5rem", marginBottom: "1rem" }}>
                   <div style={{ fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: S.muted, marginBottom: "0.2rem" }}>Implied Interest Rate</div>
                   <div style={{ fontSize: "3rem", fontWeight: 900, color: S.accent, fontFamily: "'DM Mono', monospace", letterSpacing: "-0.03em", lineHeight: 1 }}>
                     {foundRate > 0 ? pc(foundRate * 100) : "—"}
                   </div>
-                  <div style={{ fontSize: "0.67rem", color: S.muted, marginTop: "0.35rem" }}>
-                    {rfShowTax ? "Calculated from extracted P&I, balance, and remaining term" : "APR implied by your balance, payment, and term"}
-                  </div>
-                  {foundRate > 0 && (
-                    <div style={{ marginTop: "0.85rem", paddingTop: "0.85rem", borderTop: "1px solid #bae6fd", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
-                      <div>
-                        <div style={{ fontSize: "0.57rem", textTransform: "uppercase", letterSpacing: "0.1em", color: S.muted }}>Verified P&I</div>
-                        <div style={{ fontSize: "1.2rem", fontWeight: 800, color: S.text, fontFamily: "'DM Mono', monospace" }}>{$2(calcMP(rfLoan, foundRate * 100, rfTerm * 12))}</div>
-                      </div>
-                      <div>
-                        <div style={{ fontSize: "0.57rem", textTransform: "uppercase", letterSpacing: "0.1em", color: S.muted }}>Interest Remaining</div>
-                        <div style={{ fontSize: "1.2rem", fontWeight: 800, color: S.gold, fontFamily: "'DM Mono', monospace" }}>{$(calcTotalInterest(rfLoan, foundRate * 100, rfTerm * 12))}</div>
-                      </div>
-                    </div>
-                  )}
+                  <div style={{ fontSize: "0.67rem", color: S.muted, marginTop: "0.4rem" }}>APR implied by your inputs</div>
                 </div>
 
-                {/* Total PITI hero */}
-                {rfShowTax && foundRate > 0 && (
-                  <div style={{ background: "linear-gradient(135deg,#f0fdf4,#dcfce7)", border: "1px solid #86efac", borderRadius: "13px", padding: "1.5rem", marginBottom: "1rem" }}>
-                    <div style={{ fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: S.muted, marginBottom: "0.2rem" }}>
-                      Total Monthly All-In
-                    </div>
-                    <div style={{ fontSize: "3rem", fontWeight: 900, color: S.green, fontFamily: "'DM Mono', monospace", letterSpacing: "-0.03em", lineHeight: 1 }}>{$2(rfTotalPITI)}</div>
-                    <div style={{ fontSize: "0.67rem", color: S.muted, marginTop: "0.35rem" }}>P&I + Tax + Insurance{rfPMI > 0 ? " + PMI" : ""}{rfHOA > 0 ? " + HOA" : ""}</div>
-                  </div>
-                )}
-
                 {foundRate > 0 && (
-                  <Card style={{ marginBottom: "1rem" }}>
-                    <SectionHead label="Full Monthly Breakdown" />
-                    <Row label="Loan Balance" value={$(rfLoan)} />
-                    <Row label="Remaining Term" value={rfTerm + " years (" + rfTerm * 12 + " payments)"} />
-                    <Row label="Implied Interest Rate" value={pc(foundRate * 100)} hi />
+                  <Card>
+                    <SectionHead label="Verification" />
+                    <Row label="Loan Amount" value={$(rfLoan)} />
+                    <Row label="Term" value={rfTerm + " years"} />
+                    <Row label="Implied Rate" value={pc(foundRate * 100)} hi />
+                    <Row label="Recalculated Payment" value={$2(calcMP(rfLoan, foundRate * 100, rfTerm * 12))} hi />
+                    <Row label="Total Interest at This Rate" value={$(calcTotalInterest(rfLoan, foundRate * 100, rfTerm * 12))} warn />
                     <Divider />
-                    <Row label="Monthly P&I" value={$2(rfShowTax ? Math.max(0, rfPayment - rfTax - rfIns - rfHOA) : rfPayment)} hi />
-                    {rfShowTax && <>
-                      <Row label="Property Tax" value={$2(rfTax) + "/mo"} />
-                      <Row label="Homeowners Insurance" value={$2(rfIns) + "/mo"} />
-                      {rfHOA > 0 && <Row label="HOA" value={$2(rfHOA) + "/mo"} />}
-                      {rfPMI > 0 && <Row label={`PMI (est. — drops mo. ${rfPMIDropMonth || "?"})`} value={$2(rfPMI) + "/mo"} warn note="You have the right to cancel PMI when balance reaches 80% LTV" />}
-                      <Divider />
-                      <Row label="Total Monthly (PITI+)" value={$2(rfTotalPITI)} hi />
-                      <Divider />
-                      <Row label="Annual Housing Cost" value={$(rfTotalPITI * 12)} />
-                      <Row label="Min. Income (28% front-end DTI)" value={$(rfTotalPITI / 0.28) + "/mo · " + $(rfTotalPITI / 0.28 * 12) + "/yr"} note="Income needed so housing cost is ≤28% of gross income" />
-                      <Row label="Min. Income (43% back-end DTI)" value={$(rfTotalPITI / 0.43) + "/mo"} note="Standard conventional back-end DTI limit" />
-                    </>}
-                    <Divider />
-                    <Row label="Total Interest Remaining" value={$(calcTotalInterest(rfLoan, foundRate * 100, rfTerm * 12))} warn />
-                    <Row label="Total P+I Remaining" value={$(rfPayment * rfTerm * 12)} />
-                    {rfShowTax && <Row label="Total All-In Cost Remaining" value={$(rfTotalPITI * rfTerm * 12)} />}
-                    {foundRate * 100 > 7 && <Alert type="tip">Your rate ({pc(foundRate * 100)}) is above current market avg (~6.36% for 30yr). A refinance could potentially save {$(calcTotalInterest(rfLoan, foundRate * 100, rfTerm * 12) - calcTotalInterest(rfLoan, 6.36, rfTerm * 12))} in remaining interest. Use the Equity Calculator tab to model a cash-out refinance.</Alert>}
-                    {foundRate * 100 < 3 && <Alert type="warn">Rate seems unusually low — verify your numbers. If your payment includes tax and insurance, toggle on "My payment includes taxes & insurance" on the left.</Alert>}
-                  </Card>
-                )}
-
-                {rfShowTax && foundRate > 0 && rfTotalPITI > 0 && (
-                  <Card style={{ marginBottom: "1rem" }}>
-                    <SectionHead label="Payment Composition" />
-                    <PrinIntBar
-                      principal={Math.max(0, (rfShowTax ? rfPayment - rfTax - rfIns - rfHOA : rfPayment) - rfLoan * (foundRate / 12))}
-                      interest={rfLoan * (foundRate / 12)}
-                      pmi={rfPMI}
-                      tax={rfTax}
-                      ins={rfIns}
-                      hoa={rfHOA}
-                    />
-                  </Card>
-                )}
-
-                {rfHomeVal > 0 && (
-                  <Card style={{ marginBottom: "1rem" }}>
-                    <SectionHead label="Equity & LTV Position" />
-                    <EquityMeter equity={Math.max(0, rfHomeVal - rfLoan)} homeValue={rfHomeVal} />
-                    <Row label="Home Value" value={$(rfHomeVal)} />
-                    <Row label="Loan Balance" value={$(rfLoan)} />
-                    <Row label="Current Equity" value={$(Math.max(0, rfHomeVal - rfLoan))} hi />
-                    <Row label="LTV Ratio" value={pc(rfLTV * 100)} warn={rfLTV > 0.8} />
-                    {rfPMI > 0 && <Row label="Balance to cancel PMI" value={$(rfHomeVal * 0.8)} note="PMI cancels automatically here (Homeowners Protection Act)" />}
-                    {rfPMI > 0 && rfPMIDropMonth && <Row label="Est. months until PMI cancels" value={"Month " + rfPMIDropMonth + " (" + (rfPMIDropMonth / 12).toFixed(1) + " yrs)"} hi />}
-                    {rfPMI > 0 && <Row label="Total PMI you'll pay until cancellation" value={$(rfPMI * (rfPMIDropMonth || 0))} warn note="This is money that builds no equity" />}
+                    {foundRate * 100 > 8 && <Alert type="warn">This rate is above 8% — make sure you're comparing to current market rates ({pc(6.36 / 100)} national avg for 30yr). Shopping multiple lenders could save you significantly.</Alert>}
+                    {foundRate * 100 < 3 && <Alert type="warn">This rate seems unusually low. Double-check your inputs — the payment may not cover full P&I, or the term may be set too long.</Alert>}
                   </Card>
                 )}
               </div>
             </div>
 
-            {/* Rate sensitivity table */}
+            {/* Solve for payment */}
             <Card style={{ marginBottom: "1.25rem" }}>
               <SectionHead label="Payment at Different Rates (same loan)" />
               <div style={{ overflowX: "auto" }}>
-                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.71rem", minWidth: "480px" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.71rem", minWidth: "460px" }}>
                   <thead>
                     <tr style={{ borderBottom: `1px solid ${S.border}` }}>
-                      {["Rate", "Monthly P&I", rfShowTax ? "Total PITI+" : "Total Interest", "Total P&I Paid", "vs. Your Rate"].map(h => (
+                      {["Rate", "Monthly P&I", "Total Interest", "Total Paid", "vs. Current"].map(h => (
                         <th key={h} style={{ textAlign: "right", padding: "0.4rem 0.6rem", color: S.muted, fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.09em" }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {[foundRate > 0 ? foundRate * 100 - 1.0 : 5.0, foundRate > 0 ? foundRate * 100 - 0.5 : 5.5, foundRate > 0 ? foundRate * 100 : 6.0, foundRate > 0 ? foundRate * 100 + 0.5 : 6.5, foundRate > 0 ? foundRate * 100 + 1.0 : 7.0].filter(r => r > 0).map(r => {
-                      const pmt      = calcMP(rfLoan, r, rfTerm * 12);
-                      const ti       = calcTotalInterest(rfLoan, r, rfTerm * 12);
-                      const baseR    = foundRate > 0 ? foundRate * 100 : 6.0;
+                      const pmt = calcMP(rfLoan, r, rfTerm * 12);
+                      const ti = calcTotalInterest(rfLoan, r, rfTerm * 12);
+                      const baseR = foundRate > 0 ? foundRate * 100 : 6.0;
                       const basePmtV = calcMP(rfLoan, baseR, rfTerm * 12);
                       const isCurrent = Math.abs(r - baseR) < 0.001;
-                      const col3     = rfShowTax ? $2(pmt + rfTax + rfIns + rfHOA + rfPMI) : $(ti);
                       return (
                         <tr key={r} style={{ background: isCurrent ? "#eff8ff" : "transparent", borderBottom: `1px solid #edf0f5` }}>
                           <td style={{ padding: "0.38rem 0.6rem", textAlign: "right", color: isCurrent ? S.accent : S.muted, fontFamily: "'DM Mono', monospace", fontWeight: isCurrent ? 700 : 400 }}>{pc(r)}{isCurrent ? " ◀" : ""}</td>
                           <td style={{ padding: "0.38rem 0.6rem", textAlign: "right", color: "#6a88a8", fontFamily: "'DM Mono', monospace" }}>{$2(pmt)}</td>
-                          <td style={{ padding: "0.38rem 0.6rem", textAlign: "right", color: rfShowTax ? S.accent : S.gold, fontFamily: "'DM Mono', monospace" }}>{col3}</td>
+                          <td style={{ padding: "0.38rem 0.6rem", textAlign: "right", color: S.gold, fontFamily: "'DM Mono', monospace" }}>{$(ti)}</td>
                           <td style={{ padding: "0.38rem 0.6rem", textAlign: "right", color: "#6a88a8", fontFamily: "'DM Mono', monospace" }}>{$(pmt * rfTerm * 12)}</td>
                           <td style={{ padding: "0.38rem 0.6rem", textAlign: "right", fontFamily: "'DM Mono', monospace", color: isCurrent ? S.muted : pmt < basePmtV ? S.green : S.red, fontSize: "0.69rem" }}>
                             {isCurrent ? "—" : (pmt < basePmtV ? "−" : "+") + $2(Math.abs(pmt - basePmtV)) + "/mo"}
@@ -2322,7 +2148,7 @@ export default function LoanCalcSuite() {
               </div>
             </Card>
 
-            {/* Credit score table */}
+            {/* Score → rate guide */}
             <Card>
               <SectionHead label="Credit Score Impact on Rate (30yr Conventional, May 2026)" />
               <div style={{ overflowX: "auto" }}>
@@ -2345,8 +2171,8 @@ export default function LoanCalcSuite() {
                       { score: "640–659", rate: 7.95 },
                       { score: "620–639", rate: 8.60 },
                     ].map((r, i) => {
-                      const pmt     = calcMP(rfLoan, r.rate, rfTerm * 12);
-                      const ti      = calcTotalInterest(rfLoan, r.rate, rfTerm * 12);
+                      const pmt = calcMP(rfLoan, r.rate, rfTerm * 12);
+                      const ti  = calcTotalInterest(rfLoan, r.rate, rfTerm * 12);
                       const bestPmt = calcMP(rfLoan, 6.20, rfTerm * 12);
                       const bestTI  = calcTotalInterest(rfLoan, 6.20, rfTerm * 12);
                       return (

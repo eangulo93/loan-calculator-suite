@@ -518,15 +518,16 @@ export default function LoanCalcSuite() {
   const [dscrMgmt,     setDscrMgmt]     = useState(8);
 
   // Rate finder
-  const [rfLoan,    setRfLoan]    = useState(300000);
-  const [rfPayment, setRfPayment] = useState(1900);
-  const [rfTerm,    setRfTerm]    = useState(30);
-  const [rfKnow,    setRfKnow]    = useState("payment");
-  const [rfHomeVal, setRfHomeVal] = useState(375000);
-  const [rfTax,     setRfTax]     = useState(350);
-  const [rfIns,     setRfIns]     = useState(150);
-  const [rfHOA,     setRfHOA]     = useState(0);
-  const [rfShowTax, setRfShowTax] = useState(false);
+  const [rfLoan,      setRfLoan]      = useState(300000);
+  const [rfPayment,   setRfPayment]   = useState(1450);   // P&I only
+  const [rfTotalPmt,  setRfTotalPmt]  = useState(1950);   // total payment inc. T&I
+  const [rfTerm,      setRfTerm]      = useState(30);
+  const [rfKnow,      setRfKnow]      = useState("payment");
+  const [rfHomeVal,   setRfHomeVal]   = useState(375000);
+  const [rfTax,       setRfTax]       = useState(350);
+  const [rfIns,       setRfIns]       = useState(150);
+  const [rfHOA,       setRfHOA]       = useState(0);
+  const [rfShowTax,   setRfShowTax]   = useState(false);
 
   // UI
   const [amortView,  setAmortView]  = useState("annual");
@@ -668,13 +669,13 @@ export default function LoanCalcSuite() {
   const dscrAmort     = useMemo(() => buildAmort(dscrLoan, dscrRate, 30 * 12), [dscrLoan, dscrRate]);
 
   // Rate finder
+  // Rate Finder calcs — always derive P&I first, then find rate
+  const rfExtractedPI  = rfShowTax
+    ? Math.max(1, rfTotalPmt - rfTax - rfIns - rfHOA)
+    : rfPayment;
   const foundRate = useMemo(() => {
-    const piPayment = rfShowTax
-      ? Math.max(1, rfPayment - rfTax - rfIns - rfHOA)
-      : rfPayment;
-    if (rfKnow === "payment") return solveRate(rfLoan, piPayment, rfTerm * 12);
-    return 0;
-  }, [rfKnow, rfLoan, rfPayment, rfTerm, rfShowTax, rfTax, rfIns, rfHOA]);
+    return solveRate(rfLoan, rfExtractedPI, rfTerm * 12);
+  }, [rfLoan, rfExtractedPI, rfTerm]);
   const rfMonthlyNeeded = calcMP(rfLoan, foundRate, rfTerm * 12);
   // PITI extras
   const rfLTV          = rfHomeVal > 0 ? rfLoan / rfHomeVal : 0;
@@ -685,7 +686,8 @@ export default function LoanCalcSuite() {
     const idx = sched.findIndex(r => r.balance <= rfHomeVal * 0.8);
     return idx >= 0 ? idx + 1 : null;
   }, [rfLoan, foundRate, rfTerm, rfHomeVal, rfPMI]);
-  const rfTotalPITI    = rfPayment + rfTax + rfIns + rfHOA + rfPMI;
+  // Total PITI — always use extracted P&I so tax/insurance are never double-counted
+  const rfTotalPITI    = rfExtractedPI + rfTax + rfIns + rfHOA + rfPMI;
 
   // ── CSS inject ──────────────────────────────────────────────────────────
   useEffect(() => {
@@ -2119,20 +2121,20 @@ export default function LoanCalcSuite() {
 
                     {rfShowTax && (
                       <>
-                        <DualInput label="Total Monthly Payment (as paid)" value={rfPayment} min={100} max={50000} step={10} onChange={setRfPayment} prefix="$" integer note="Enter exactly what you pay each month — from your bank statement or coupon book." />
-                        <DualInput label="Monthly Property Tax" value={rfTax} min={0} max={3000} step={10} onChange={setRfTax} prefix="$" suffix="/mo" integer note="Annual property tax ÷ 12. Find on your county assessor site or mortgage statement." />
-                        <DualInput label="Monthly Homeowners Insurance" value={rfIns} min={0} max={1000} step={10} onChange={setRfIns} prefix="$" suffix="/mo" integer note="Annual insurance premium ÷ 12. Check your insurance declarations page." />
+                        <DualInput label="Total Monthly Payment (as paid)" value={rfTotalPmt} min={100} max={50000} step={10} onChange={setRfTotalPmt} prefix="$" integer note="Enter exactly what you pay each month — from your bank statement or coupon book." />
+                        <DualInput label="Monthly Property Tax" value={rfTax} min={0} max={3000} step={10} onChange={setRfTax} prefix="$" suffix="/mo" integer note="Annual property tax ÷ 12. From your mortgage statement or county assessor." />
+                        <DualInput label="Monthly Homeowners Insurance" value={rfIns} min={0} max={1000} step={10} onChange={setRfIns} prefix="$" suffix="/mo" integer note="Annual insurance premium ÷ 12. From your declarations page." />
                         <DualInput label="HOA Fees" value={rfHOA} min={0} max={2000} step={25} onChange={setRfHOA} prefix="$" suffix="/mo" integer note="Enter 0 if not applicable." />
 
                         {/* Live P&I extraction */}
                         <div style={{ background: "#eff8ff", border: "1px solid #bae6fd", borderRadius: "8px", padding: "0.8rem 1rem", marginBottom: "1rem" }}>
-                          <div style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.accent, marginBottom: "0.45rem" }}>Extracted P&amp;I (used to find rate)</div>
+                          <div style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.accent, marginBottom: "0.45rem" }}>Extracted P&amp;I (rate calculated from this)</div>
                           {[
-                            { l: "Total payment entered",         v: rfPayment },
-                            { l: "− Property tax",                v: rfTax },
-                            { l: "− Homeowners insurance",        v: rfIns },
-                            { l: "− HOA",                        v: rfHOA },
-                          ].filter(r => r.v > 0 || r.l === "Total payment entered").map(r => (
+                            { l: "Total payment entered",    v: rfTotalPmt, sub: false },
+                            { l: "− Property tax",           v: rfTax,      sub: true  },
+                            { l: "− Homeowners insurance",   v: rfIns,      sub: true  },
+                            { l: "− HOA",                   v: rfHOA,      sub: true  },
+                          ].filter(r => r.v > 0 || !r.sub).map(r => (
                             <div key={r.l} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.68rem", color: S.muted, marginBottom: "0.18rem" }}>
                               <span>{r.l}</span>
                               <span style={{ fontFamily: "'DM Mono',monospace", color: S.text }}>{$2(r.v)}</span>
@@ -2140,11 +2142,11 @@ export default function LoanCalcSuite() {
                           ))}
                           <div style={{ height: "1px", background: "#bae6fd", margin: "0.4rem 0" }} />
                           <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700 }}>
-                            <span style={{ fontSize: "0.72rem", color: S.accent }}>Est. P&amp;I (before PMI)</span>
-                            <span style={{ fontSize: "0.85rem", fontFamily: "'DM Mono',monospace", color: S.accent }}>{$2(Math.max(0, rfPayment - rfTax - rfIns - rfHOA))}</span>
+                            <span style={{ fontSize: "0.72rem", color: S.accent }}>= P&amp;I Only</span>
+                            <span style={{ fontSize: "0.88rem", fontFamily: "'DM Mono',monospace", color: S.accent }}>{$2(rfExtractedPI)}</span>
                           </div>
-                          {rfPayment - rfTax - rfIns - rfHOA < 200 && (
-                            <p style={{ fontSize: "0.62rem", color: S.red, margin: "0.4rem 0 0" }}>⚠ Extracted P&I seems too low — check your tax and insurance amounts.</p>
+                          {rfExtractedPI < 200 && (
+                            <p style={{ fontSize: "0.62rem", color: S.red, margin: "0.4rem 0 0" }}>⚠ Extracted P&I seems too low — double-check your tax and insurance amounts.</p>
                           )}
                         </div>
                       </>

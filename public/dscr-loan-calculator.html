@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSCR Loan Calculator: How to Qualify Based on Rental Income (2026)</title>
+  <meta name="description" content="Use our free DSCR loan calculator to find out if your rental property qualifies. Learn what DSCR means, how lenders calculate it, and what ratio you need to get approved." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f0f4f9;
+      color: #1a2537;
+      line-height: 1.8;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.09);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: #0f1f35; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.75rem; color: #5a6e84; text-decoration: none; font-weight: 500; }
+    .apply-btn {
+      padding: 0.4rem 1rem;
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #fff;
+      border-radius: 7px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* ── Article layout ── */
+    .article-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      .article-wrap { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+    }
+
+    /* ── Article ── */
+    article { background: #fff; border-radius: 14px; padding: 2.5rem; border: 1px solid rgba(0,0,0,0.07); }
+
+    .category-tag {
+      display: inline-block;
+      background: #eff8ff;
+      color: #0284c7;
+      border: 1px solid #bae6fd;
+      border-radius: 5px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    article h1 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 800;
+      color: #0f1f35;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .article-meta {
+      font-size: 0.73rem;
+      color: #8a9ab0;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #edf0f5;
+    }
+
+    article p { margin-bottom: 1.25rem; font-size: 0.95rem; color: #2a3d52; }
+
+    article h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f1f35;
+      margin: 2rem 0 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    article h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f1f35;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    /* ── Callout boxes ── */
+    .callout {
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+    }
+    .callout-blue { background: #eff8ff; border-left: 4px solid #0284c7; color: #1e3a5f; }
+    .callout-green { background: #f0fdf4; border-left: 4px solid #059669; color: #14532d; }
+    .callout-yellow { background: #fffbeb; border-left: 4px solid #d97706; color: #78350f; }
+    .callout-red { background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; }
+    .callout strong { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+
+    /* ── DSCR table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+    }
+    th {
+      background: #1e3a5f;
+      color: #fff;
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #edf0f5; color: #2a3d52; }
+    tr:nth-child(even) td { background: #f9fbfd; }
+    tr:last-child td { border-bottom: none; }
+
+    /* ── CTA box ── */
+    .cta-box {
+      background: linear-gradient(135deg, #1e3a5f, #0284c7);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-align: center;
+      margin: 2rem 0;
+      color: #fff;
+    }
+    .cta-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .cta-box p { font-size: 0.82rem; opacity: 0.88; margin-bottom: 1.1rem; }
+    .cta-box a {
+      display: inline-block;
+      padding: 0.7rem 1.75rem;
+      background: #fff;
+      color: #0284c7;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin: 0.3rem;
+    }
+    .cta-box a.secondary {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* ── Sidebar ── */
+    .sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 1rem; }
+
+    .sidebar-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .sidebar-card h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #0f1f35;
+      margin-bottom: 0.75rem;
+    }
+    .sidebar-card ul { list-style: none; }
+    .sidebar-card ul li {
+      font-size: 0.75rem;
+      color: #4a6278;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #edf0f5;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .sidebar-card ul li:last-child { border-bottom: none; }
+    .sidebar-card ul li a { color: #0284c7; text-decoration: none; font-weight: 500; }
+
+    .sidebar-cta {
+      background: linear-gradient(135deg, #1e3a5f, #0284c7);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      color: #fff;
+    }
+    .sidebar-cta h4 { font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .sidebar-cta p { font-size: 0.72rem; opacity: 0.85; margin-bottom: 0.85rem; line-height: 1.5; }
+    .sidebar-cta a {
+      display: block;
+      padding: 0.55rem 1rem;
+      background: #fff;
+      color: #0284c7;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.78rem;
+      margin-bottom: 0.4rem;
+    }
+    .sidebar-cta a.outline {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-bottom: 0;
+    }
+
+    /* ── Footer ── */
+    .footer { background: #1e3a5f; padding: 1.25rem 1.5rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .footer-links a { color: #93c5fd; font-size: 0.75rem; text-decoration: none; }
+    .footer p { font-size: 0.62rem; color: #64748b; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <span>💰</span>
+        <span class="logo-text">My Loan Breakdown</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Calculators</a>
+        <a href="/about.html">About</a>
+        <a href="/apply.html" class="apply-btn">Apply for a Loan →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article -->
+  <div class="article-wrap">
+    <article>
+      <span class="category-tag">Investment Loans</span>
+      <h1>DSCR Loan Calculator: How to Qualify Based on Rental Income (2026)</h1>
+      <div class="article-meta">
+        Updated May 2026 · 6 min read · myloanbreakdown.com
+      </div>
+
+      <p>If you're a real estate investor tired of handing over two years of tax returns, W-2s, and pay stubs just to buy a rental property — a DSCR loan might be exactly what you've been looking for. DSCR loans qualify you based on your property's rental income, not your personal income. No job history required. No personal income verification. Just numbers.</p>
+
+      <p>This guide explains exactly how DSCR loans work, how lenders calculate your ratio, and what you need to qualify in 2026.</p>
+
+      <div class="callout callout-blue">
+        <strong>🧮 Try Our Free DSCR Calculator</strong>
+        Enter your purchase price, down payment, rate, and expected rent — our calculator shows your DSCR ratio instantly and tells you which lender tiers you qualify for. <a href="/#dscr" style="color:#0284c7; font-weight:700;">Use the DSCR Calculator →</a>
+      </div>
+
+      <h2>What Is DSCR?</h2>
+      <p>DSCR stands for <strong>Debt Service Coverage Ratio</strong>. It's a simple formula lenders use to measure whether a rental property generates enough income to cover its loan payments:</p>
+
+      <div class="callout callout-blue">
+        <strong>DSCR Formula</strong>
+        DSCR = Gross Monthly Rent ÷ Monthly PITIA (Principal + Interest + Taxes + Insurance + HOA)
+      </div>
+
+      <p>A DSCR of 1.0 means the property breaks even — rent exactly covers the payment. A DSCR above 1.0 means the property generates positive cash flow. Below 1.0 means you'd need to cover the gap out of pocket each month.</p>
+
+      <h3>Quick Example</h3>
+      <p>Say you're buying a rental property with a $1,850/month PITIA payment and it rents for $2,400/month:</p>
+      <p><strong>DSCR = $2,400 ÷ $1,850 = 1.30</strong></p>
+      <p>A 1.30 DSCR qualifies at most lenders and gets you their best rate pricing.</p>
+
+      <h2>DSCR Qualification Tiers (2026)</h2>
+      <p>Different lenders have different minimum requirements. Here's how the tiers typically break down:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>DSCR Ratio</th>
+            <th>Qualification Status</th>
+            <th>Rate Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1.25x and above</strong></td><td>✅ Strong — qualifies with most lenders</td><td>Best pricing available</td></tr>
+          <tr><td><strong>1.10x – 1.24x</strong></td><td>✅ Qualifies at many lenders</td><td>Slightly higher rate</td></tr>
+          <tr><td><strong>1.00x – 1.09x</strong></td><td>⚠️ Marginal — limited lender options</td><td>Higher rate, stricter terms</td></tr>
+          <tr><td><strong>0.75x – 0.99x</strong></td><td>⚠️ No-ratio programs only</td><td>Significantly higher rate</td></tr>
+          <tr><td><strong>Below 0.75x</strong></td><td>❌ Most lenders won't approve</td><td>Hard money may be only option</td></tr>
+        </tbody>
+      </table>
+
+      <h2>DSCR Loan Requirements in 2026</h2>
+      <p>While every lender is different, here's what most DSCR lenders require:</p>
+
+      <h3>Credit Score</h3>
+      <p>Most DSCR lenders require a minimum 640 credit score. For the best rates — typically available at 6.125% or below as of May 2026 — you'll want a 740+ score with 75% LTV or better.</p>
+
+      <h3>Down Payment</h3>
+      <p>Expect to put down 20–25% on a DSCR loan. Some lenders allow 15% with strong credit and high DSCR, but 20–25% is standard. Unlike conventional loans, going below 20% doesn't trigger PMI — it just isn't offered.</p>
+
+      <h3>Property Types</h3>
+      <p>DSCR loans work on single-family rentals, 2–4 unit properties, condos, and in some cases short-term rentals (Airbnb, VRBO). Most lenders require the property to be non-owner-occupied — you cannot use a DSCR loan on your primary residence.</p>
+
+      <h3>No Income Documentation</h3>
+      <p>This is the key differentiator. DSCR lenders do not verify your personal income, employment history, or debt-to-income ratio. They look at the property's numbers, not yours. Self-employed investors, 1099 earners, and business owners who show low personal income on paper can qualify where conventional loans would reject them.</p>
+
+      <div class="callout callout-green">
+        <strong>✅ Who DSCR Loans Are Best For</strong>
+        Real estate investors who own multiple properties, self-employed borrowers with complex tax situations, high earners who write off significant expenses, and anyone building a rental portfolio who wants to keep personal finances separate from investment activity.
+      </div>
+
+      <div class="callout callout-yellow">
+        <strong>⚠️ Who Should Think Twice</strong>
+        First-time investors buying a property that barely breaks even. If your DSCR is below 1.0, you're taking on a property that costs you money every month before maintenance, repairs, or vacancy. Run the numbers carefully before committing.
+      </div>
+
+      <h2>Current DSCR Loan Rates (May 2026)</h2>
+      <p>DSCR loan rates are higher than conventional rates because they carry more risk for lenders — no income verification means more uncertainty. Here's a snapshot of where rates sit in May 2026:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Credit Score</th>
+            <th>LTV</th>
+            <th>Approx. Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>740+</td><td>75% or less</td><td>6.125% – 6.75%</td></tr>
+          <tr><td>700–739</td><td>75% or less</td><td>6.75% – 7.25%</td></tr>
+          <tr><td>680–699</td><td>75% or less</td><td>7.25% – 7.875%</td></tr>
+          <tr><td>640–679</td><td>75% or less</td><td>7.875% – 8.5%</td></tr>
+          <tr><td>Any score</td><td>80%+</td><td>Add 0.25–0.5% to above</td></tr>
+        </tbody>
+      </table>
+
+      <p>Use our <a href="/#dscr" style="color:#0284c7; font-weight:600;">DSCR calculator</a> to model different rate scenarios against your property's actual rent to see how your cash flow changes.</p>
+
+      <h2>How to Improve Your DSCR</h2>
+      <p>If your DSCR is coming in too low to qualify, you have three levers:</p>
+
+      <h3>1. Increase the Rent</h3>
+      <p>Get a market rent analysis from a local property manager. If the current asking rent is below market, a higher rent estimate (supported by a 1007 rent schedule from your appraiser) could push your DSCR above the threshold.</p>
+
+      <h3>2. Increase the Down Payment</h3>
+      <p>A larger down payment means a smaller loan, which means a lower monthly PITIA. Going from 20% to 25% down can meaningfully improve your DSCR when the numbers are tight.</p>
+
+      <h3>3. Negotiate the Purchase Price</h3>
+      <p>Lower purchase price → lower loan → lower payment → better DSCR. If a property is borderline, sometimes a modest price reduction from the seller gets you over the threshold.</p>
+
+      <div class="callout callout-blue">
+        <strong>💡 Use the Calculator First</strong>
+        Before making an offer on any rental property, run the DSCR numbers. Our calculator shows you exactly what rent you need at different purchase prices and down payments to hit a 1.25x DSCR — the threshold for best-rate pricing. <a href="/#dscr" style="color:#0284c7; font-weight:700;">Try it free →</a>
+      </div>
+
+      <h2>DSCR vs. Conventional Investment Loans</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>DSCR Loan</th>
+            <th>Conventional Investment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Income verification</td><td>None required</td><td>2 years W-2 or tax returns</td></tr>
+          <tr><td>DTI ratio</td><td>Not calculated</td><td>Max 45–50%</td></tr>
+          <tr><td>Max properties</td><td>Unlimited (varies by lender)</td><td>10 financed properties (Fannie)</td></tr>
+          <tr><td>Minimum down</td><td>20–25%</td><td>15–25%</td></tr>
+          <tr><td>Rate premium</td><td>0.5–1.5% above conventional</td><td>0.75–1.25% above primary</td></tr>
+          <tr><td>Closing speed</td><td>21–30 days typical</td><td>30–45 days typical</td></tr>
+          <tr><td>Short-term rental OK</td><td>Many lenders allow it</td><td>Usually requires LTR income</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Bottom Line</h2>
+      <p>DSCR loans are one of the most powerful tools available to real estate investors in 2026 — especially those who are self-employed or own multiple properties. The tradeoff is a higher interest rate and larger down payment compared to conventional financing. But for investors who value speed, simplicity, and the ability to scale without income documentation hurdles, that tradeoff is almost always worth it.</p>
+
+      <p>Run your property's numbers before talking to any lender. Know your DSCR, know your LTV, and know what rate tier you're in. Our calculator gives you all of that in seconds — for free.</p>
+
+      <div class="cta-box">
+        <h3>Run Your DSCR Numbers Now</h3>
+        <p>Enter your purchase price, expected rent, and loan details. See your exact DSCR ratio, monthly cash flow, and which lender tiers you qualify for — instantly.</p>
+        <a href="/#dscr">Use the Free DSCR Calculator</a>
+        <a href="/apply.html" class="secondary">Talk to a Loan Officer →</a>
+      </div>
+
+      <p style="font-size:0.72rem; color:#8a9ab0; margin-top:2rem; padding-top:1rem; border-top:1px solid #edf0f5;">
+        <strong>Disclosure:</strong> This article is for educational purposes only and does not constitute financial or lending advice. DSCR loan rates and requirements vary by lender and change frequently. Always verify current terms with a licensed loan officer before making any investment decision. Rates cited reflect market conditions as of May 2026.
+      </p>
+    </article>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-cta">
+        <h4>🧮 Free DSCR Calculator</h4>
+        <p>Enter your rent, expenses, and loan details. See your exact ratio and cash flow instantly.</p>
+        <a href="/#dscr">Calculate My DSCR</a>
+        <a href="/apply.html" class="outline">Talk to a Loan Officer</a>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📚 More Calculators</h4>
+        <ul>
+          <li>🏠 <a href="/">Mortgage Calculator</a></li>
+          <li>🏦 <a href="/">Home Equity / HELOC</a></li>
+          <li>💳 <a href="/">Debt Consolidation</a></li>
+          <li>📊 <a href="/">Live Market Rates</a></li>
+          <li>🔍 <a href="/">Rate Finder</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>✅ DSCR Quick Facts</h4>
+        <ul>
+          <li>No income docs required</li>
+          <li>Min 640 credit score</li>
+          <li>20–25% down payment</li>
+          <li>1.25x DSCR for best rates</li>
+          <li>Non-owner occupied only</li>
+          <li>STR/Airbnb income allowed</li>
+          <li>Unlimited properties</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📍 Licensed States</h4>
+        <ul>
+          <li>California</li>
+          <li>Nevada</li>
+          <li>Texas</li>
+          <li>Arizona</li>
+          <li>Florida</li>
+          <li>Tennessee</li>
+          <li>Colorado</li>
+          <li>Louisiana</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="/">Calculators</a>
+      <a href="/about.html">About</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/apply.html">Apply for a Loan</a>
+    </div>
+    <p>
+      myloanbreakdown.com — Free loan calculators for every loan type. Not a lender. Not financial advice. Educational purposes only. HUD Housing Counseling: 1-800-569-4287.
+    </p>
+  </div>
+
+</body>
+</html>

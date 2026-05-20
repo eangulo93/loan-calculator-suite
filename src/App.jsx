@@ -758,7 +758,7 @@ export default function LoanCalcSuite() {
 
   const TABS = [
     { id: "rates",   label: "📊 Market Rates" },
-    { id: "calc",    label: "🏠 Loan Calculator" },
+    { id: "calc",    label: "🏠 Mortgage Loan Calculator" },
     { id: "equity",  label: "🏦 Equity Calculator" },
     { id: "debtcon", label: "💳 Debt Consolidation" },
     { id: "dscr",    label: "📈 DSCR / Investor" },

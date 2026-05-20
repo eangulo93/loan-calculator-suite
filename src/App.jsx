@@ -925,7 +925,7 @@ export default function LoanCalcSuite() {
                     color: "#b45309",
                     bg: "#fff7ed",
                     border: "#fdba74",
-                    href: "/dscr-loan-calculator",
+                    href: "/dscr-loan-calculator.html",
                     time: "6 min read",
                   },
                   {
@@ -935,7 +935,7 @@ export default function LoanCalcSuite() {
                     color: "#059669",
                     bg: "#f0fdf4",
                     border: "#86efac",
-                    href: "/cash-out-refinance-calculator",
+                    href: "/cash-out-refinance-calculator.html",
                     time: "7 min read",
                   },
                 ].map(article => (

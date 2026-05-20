@@ -928,6 +928,16 @@ export default function LoanCalcSuite() {
                     href: "/dscr-loan-calculator",
                     time: "6 min read",
                   },
+                  {
+                    title: "Cash-Out Refinance Calculator: How Much Can You Pull Out?",
+                    desc: "Learn the 80% LTV rule, how your new payment is calculated, and when a cash-out refi makes sense vs. a HELOC.",
+                    tag: "Home Equity",
+                    color: "#059669",
+                    bg: "#f0fdf4",
+                    border: "#86efac",
+                    href: "/cash-out-refinance-calculator",
+                    time: "7 min read",
+                  },
                 ].map(article => (
                   <a key={article.href} href={article.href} style={{ textDecoration: "none", display: "block", background: "#fff", border: `1px solid rgba(0,0,0,0.08)`, borderRadius: "12px", padding: "1.25rem", transition: "box-shadow 0.15s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.6rem" }}>

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cash-Out Refinance Calculator: How Much Can You Pull Out? (2026)</title>
+  <meta name="description" content="Use our free cash-out refinance calculator to find out exactly how much equity you can access, what your new payment will be, and whether a cash-out refi makes sense for you." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f0f4f9; color: #1a2537; line-height: 1.8; }
+    .header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.09); padding: 1rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: #0f1f35; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.75rem; color: #5a6e84; text-decoration: none; font-weight: 500; }
+    .apply-btn { padding: 0.4rem 1rem; background: linear-gradient(135deg,#0284c7,#0ea5e9); color: #fff; border-radius: 7px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+    .article-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; grid-template-columns: 1fr 280px; gap: 2rem; align-items: start; }
+    @media (max-width: 720px) { .article-wrap { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+    article { background: #fff; border-radius: 14px; padding: 2.5rem; border: 1px solid rgba(0,0,0,0.07); }
+    .category-tag { display: inline-block; background: #f0fdf4; color: #059669; border: 1px solid #86efac; border-radius: 5px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; margin-bottom: 1rem; }
+    article h1 { font-size: clamp(1.5rem,3.5vw,2rem); font-weight: 800; color: #0f1f35; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .article-meta { font-size: 0.73rem; color: #8a9ab0; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #edf0f5; }
+    article p { margin-bottom: 1.25rem; font-size: 0.95rem; color: #2a3d52; }
+    article h2 { font-size: 1.25rem; font-weight: 800; color: #0f1f35; margin: 2rem 0 0.75rem; letter-spacing: -0.01em; }
+    article h3 { font-size: 1rem; font-weight: 700; color: #0f1f35; margin: 1.5rem 0 0.5rem; }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.88rem; }
+    .callout-blue { background: #eff8ff; border-left: 4px solid #0284c7; color: #1e3a5f; }
+    .callout-green { background: #f0fdf4; border-left: 4px solid #059669; color: #14532d; }
+    .callout-yellow { background: #fffbeb; border-left: 4px solid #d97706; color: #78350f; }
+    .callout-red { background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; }
+    .callout strong { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+    th { background: #1e3a5f; color: #fff; padding: 0.65rem 1rem; text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #edf0f5; color: #2a3d52; }
+    tr:nth-child(even) td { background: #f9fbfd; }
+    tr:last-child td { border-bottom: none; }
+    .cta-box { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.75rem; text-align: center; margin: 2rem 0; color: #fff; }
+    .cta-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .cta-box p { font-size: 0.82rem; opacity: 0.88; margin-bottom: 1.1rem; }
+    .cta-box a { display: inline-block; padding: 0.7rem 1.75rem; background: #fff; color: #0284c7; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.88rem; margin: 0.3rem; }
+    .cta-box a.secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 1rem; }
+    .sidebar-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.25rem; }
+    .sidebar-card h4 { font-size: 0.82rem; font-weight: 700; color: #0f1f35; margin-bottom: 0.75rem; }
+    .sidebar-card ul { list-style: none; }
+    .sidebar-card ul li { font-size: 0.75rem; color: #4a6278; padding: 0.35rem 0; border-bottom: 1px solid #edf0f5; display: flex; align-items: center; gap: 0.4rem; }
+    .sidebar-card ul li:last-child { border-bottom: none; }
+    .sidebar-card ul li a { color: #0284c7; text-decoration: none; font-weight: 500; }
+    .sidebar-cta { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.25rem; text-align: center; color: #fff; }
+    .sidebar-cta h4 { font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .sidebar-cta p { font-size: 0.72rem; opacity: 0.85; margin-bottom: 0.85rem; line-height: 1.5; }
+    .sidebar-cta a { display: block; padding: 0.55rem 1rem; background: #fff; color: #0284c7; border-radius: 7px; text-decoration: none; font-weight: 700; font-size: 0.78rem; margin-bottom: 0.4rem; }
+    .sidebar-cta a.outline { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); margin-bottom: 0; }
+    .footer { background: #1e3a5f; padding: 1.25rem 1.5rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .footer-links a { color: #93c5fd; font-size: 0.75rem; text-decoration: none; }
+    .footer p { font-size: 0.62rem; color: #64748b; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <span>💰</span>
+        <span class="logo-text">My Loan Breakdown</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Calculators</a>
+        <a href="/about.html">About</a>
+        <a href="/apply.html" class="apply-btn">Apply for a Loan →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <article>
+      <span class="category-tag">Home Equity</span>
+      <h1>Cash-Out Refinance Calculator: How Much Can You Pull Out? (2026)</h1>
+      <div class="article-meta">Updated May 2026 · 7 min read · myloanbreakdown.com</div>
+
+      <p>Home equity is at record highs in 2026. If you bought or refinanced in the last several years, there's a good chance you're sitting on tens or hundreds of thousands of dollars in equity — and a cash-out refinance is one of the most straightforward ways to access it. But how much can you actually pull out? And does it make financial sense?</p>
+
+      <p>This guide walks through exactly how a cash-out refinance works, how lenders calculate your maximum loan amount, what the new payment looks like, and when it makes sense — and when it doesn't.</p>
+
+      <div class="callout callout-green">
+        <strong>🧮 Try Our Free Cash-Out Refi Calculator</strong>
+        Enter your home value, current mortgage balance, the cash you want to pull, and your new rate. See your exact new payment, LTV, closing costs, and break-even timeline instantly. <a href="/#equity" style="color:#059669; font-weight:700;">Use the Cash-Out Calculator →</a>
+      </div>
+
+      <h2>How a Cash-Out Refinance Works</h2>
+      <p>A cash-out refinance replaces your existing mortgage with a new, larger loan. The difference between your old loan balance and the new loan amount is paid to you in cash at closing.</p>
+
+      <h3>Simple Example</h3>
+      <p>Say your home is worth <strong>$500,000</strong> and you owe <strong>$280,000</strong> on your mortgage. You want to pull out <strong>$80,000</strong> for a home renovation.</p>
+      <p>Your new loan would be <strong>$360,000</strong> ($280,000 existing balance + $80,000 cash). At closing you receive $80,000 minus closing costs. Your old mortgage is paid off and you now have one new loan at the new rate and term.</p>
+
+      <div class="callout callout-blue">
+        <strong>Key Point</strong>
+        Unlike a HELOC or home equity loan, a cash-out refi replaces your entire mortgage — not just adds a second lien. This means your rate and term reset on the whole balance, not just the cash portion.
+      </div>
+
+      <h2>How Much Can You Pull Out? — By Loan Type</h2>
+      <p>The amount you can access depends on your <strong>Loan-to-Value (LTV)</strong> ratio after the refinance — and that ceiling varies significantly by loan type. Here's a complete breakdown:</p>
+
+      <h3>Conventional Cash-Out Refinance</h3>
+      <p>The most common option for primary residences and second homes. Fannie Mae and Freddie Mac cap conventional cash-out refis at <strong>80% LTV</strong> on primary residences. On a $500,000 home owing $280,000, your max new loan is $400,000 — giving you up to $120,000 cash before closing costs.</p>
+
+      <h3>FHA Cash-Out Refinance</h3>
+      <p>FHA also caps at <strong>80% LTV</strong>, same as conventional. The difference: FHA allows lower credit scores (minimum 500, though most lenders want 580+) and is more flexible with DTI. The catch — FHA adds mortgage insurance premium (MIP) that you pay for the life of the loan. If you have good credit, conventional is almost always better. FHA cash-out makes sense if your credit score is in the 580–639 range.</p>
+
+      <h3>VA Cash-Out Refinance</h3>
+      <p>This is where veterans have a massive advantage. VA cash-out refis allow up to <strong>100% LTV</strong> — meaning you can pull out virtually all of your equity. On a $500,000 home owing $280,000, eligible veterans could access up to $220,000 in equity minus the VA funding fee (2.15% for first use, typically rolled in). No PMI ever. This is one of the most powerful financial tools available to veterans and active service members.</p>
+
+      <h3>Jumbo Cash-Out Refinance</h3>
+      <p>For loan amounts above the conforming limit ($806,500 in most areas for 2026), jumbo lenders typically cap cash-out at <strong>70–75% LTV</strong> — more conservative than conventional. Requirements are stricter too: most jumbo lenders want 700+ credit score, 12+ months of reserves, and full income documentation. Rates run 0.25–0.5% above conventional.</p>
+
+      <h3>Investment Property Cash-Out</h3>
+      <p>Pulling equity from a rental property is possible but comes with tighter limits. Conventional guidelines allow cash-out on investment properties up to <strong>75% LTV</strong> for single-family, and <strong>70% LTV</strong> for 2–4 unit properties. You'll also need 6 months of reserves for each financed property you own. Rates are typically 0.75–1.5% higher than primary residence rates.</p>
+
+      <h3>DSCR Cash-Out (Investment Properties)</h3>
+      <p>For investors who don't want to show personal income, DSCR cash-out refis are available up to <strong>75–80% LTV</strong> depending on the lender. No income verification required — the property's rental income does the qualifying. Rates run higher than conventional (typically 7–8.5% in 2026) but the flexibility is unmatched for investors with complex tax situations.</p>
+
+      <h3>Non-QM / Bank Statement Cash-Out</h3>
+      <p>Self-employed borrowers who can't qualify using traditional income documentation can use bank statement loans for cash-out. Most bank statement programs allow up to <strong>80% LTV</strong> on primary, <strong>75%</strong> on investment. Rates are higher — expect 7.5–9% — but it opens the door for borrowers who show low income on tax returns due to business write-offs.</p>
+
+      <div class="callout callout-yellow">
+        <strong>⚠️ Texas Cash-Out Special Rules</strong>
+        Texas has unique constitutional protections on home equity. Texas cash-out refis (called Texas 50(a)(6) loans) are capped at 80% LTV, require a 12-day cooling-off period after application, can only be done once per year, and carry additional disclosures. If your property is in Texas, make sure your lender is familiar with Texas home equity law.
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Loan Type</th><th>Max LTV</th><th>Min Credit</th><th>Key Advantage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Conventional (Primary)</td><td>80%</td><td>620+</td><td>Best rates for qualified borrowers</td></tr>
+          <tr><td>FHA Cash-Out</td><td>80%</td><td>580+</td><td>Lower credit score OK</td></tr>
+          <tr><td>VA Cash-Out</td><td>100%</td><td>580+ (typ.)</td><td>Access all equity, no PMI</td></tr>
+          <tr><td>Jumbo Cash-Out</td><td>70–75%</td><td>700+</td><td>High-value properties</td></tr>
+          <tr><td>Investment (Conventional)</td><td>70–75%</td><td>680+</td><td>Standard investment refi</td></tr>
+          <tr><td>DSCR Cash-Out</td><td>75–80%</td><td>640+</td><td>No income docs needed</td></tr>
+          <tr><td>Bank Statement</td><td>75–80%</td><td>640+</td><td>Self-employed friendly</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Cash-Out Refi vs. HELOC vs. Home Equity Loan</h2>
+
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Cash-Out Refi</th><th>HELOC</th><th>HE Loan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Replaces mortgage</td><td>Yes</td><td>No</td><td>No</td></tr>
+          <tr><td>Rate type</td><td>Fixed</td><td>Variable</td><td>Fixed</td></tr>
+          <tr><td>Access to funds</td><td>Lump sum at closing</td><td>Draw as needed</td><td>Lump sum</td></tr>
+          <tr><td>Closing costs</td><td>2–3% of new loan</td><td>Low or none</td><td>Low or none</td></tr>
+          <tr><td>Best when</td><td>Current rate is close to or below market</td><td>Ongoing expenses</td><td>One-time expense</td></tr>
+          <tr><td>Risk</td><td>Resets full mortgage term</td><td>Rate fluctuates</td><td>Second payment</td></tr>
+        </tbody>
+      </table>
+
+      <h2>What Will My New Payment Be?</h2>
+      <p>Your new monthly payment depends on three things: the new loan amount, the new interest rate, and the new term. Use our calculator to see the exact number — but here's a quick sense of what to expect:</p>
+
+      <table>
+        <thead>
+          <tr><th>New Loan Amount</th><th>Rate (30yr)</th><th>Monthly P&I</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$300,000</td><td>6.69%</td><td>$1,937</td></tr>
+          <tr><td>$350,000</td><td>6.69%</td><td>$2,260</td></tr>
+          <tr><td>$400,000</td><td>6.69%</td><td>$2,583</td></tr>
+          <tr><td>$450,000</td><td>6.69%</td><td>$2,906</td></tr>
+          <tr><td>$500,000</td><td>6.69%</td><td>$3,229</td></tr>
+        </tbody>
+      </table>
+
+      <p>Remember to add property tax, homeowners insurance, and HOA to get your true PITI payment. Our calculator does this automatically.</p>
+
+      <h2>The Rate Question: Does It Make Sense?</h2>
+      <p>The biggest factor in whether a cash-out refi makes financial sense is how your current mortgage rate compares to today's rates.</p>
+
+      <h3>If Your Current Rate Is Higher Than Today's Rate</h3>
+      <p>This is the ideal scenario. You get cash out AND lower your rate at the same time. Your monthly payment may actually drop even with a larger loan balance. This is a win on multiple levels.</p>
+
+      <h3>If Your Current Rate Is Lower Than Today's Rate</h3>
+      <p>This is where it gets complicated. If you locked in a 3% rate in 2021 and today's rates are 6.69%, a cash-out refi means refinancing your entire balance at a much higher rate. Your payment will jump significantly — not just on the cash portion, but on every dollar you owe.</p>
+
+      <div class="callout callout-red">
+        <strong>⚠️ The Rate Trap</strong>
+        If you have a low existing rate, consider a HELOC or home equity loan instead. These add a second payment but leave your existing low-rate mortgage untouched. Our equity calculator lets you compare all three options side by side.
+      </div>
+
+      <h2>Closing Costs: What to Expect</h2>
+      <p>Cash-out refis come with closing costs — typically <strong>2–3% of the new loan amount</strong>. On a $400,000 new loan that's $8,000–$12,000.</p>
+
+      <p>You have two options:</p>
+      <ul style="margin: 0 0 1.25rem 1.5rem; font-size: 0.95rem; color: #2a3d52;">
+        <li style="margin-bottom: 0.5rem;"><strong>Pay closing costs upfront</strong> — lower loan balance, better long-term math</li>
+        <li><strong>Roll closing costs into the loan</strong> — nothing due at closing, but you pay interest on the costs over the life of the loan</li>
+      </ul>
+
+      <p>Our calculator handles both scenarios — toggle between "Pay upfront" and "Roll into loan" to see the difference.</p>
+
+      <h2>Break-Even: How Long Until the Cash Pays Off?</h2>
+      <p>If your payment goes up because you're refinancing from a lower rate, you need to calculate how long it takes for the cash you received to "pay for" the higher monthly cost. This is the break-even point.</p>
+
+      <p><strong>Example:</strong> Your payment goes up $400/month. You pulled out $60,000 in cash. Break-even = $60,000 ÷ $400 = 150 months (12.5 years). If you plan to stay in the home longer than 12.5 years, the math works. If not, a HELOC might be smarter.</p>
+
+      <h2>Common Uses for Cash-Out Proceeds</h2>
+
+      <table>
+        <thead>
+          <tr><th>Use</th><th>Makes Sense?</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Home renovation/addition</td><td>✅ Usually yes</td><td>Increases home value, improves quality of life</td></tr>
+          <tr><td>Debt consolidation</td><td>✅ Often yes</td><td>Replaces high-rate debt (18–24% cards) with 6–7% mortgage rate</td></tr>
+          <tr><td>Investment property down payment</td><td>✅ Can make sense</td><td>Leverage equity to build portfolio — model the numbers carefully</td></tr>
+          <tr><td>College tuition</td><td>⚠️ Consider carefully</td><td>Putting home at risk for education — explore student loans first</td></tr>
+          <tr><td>Vacation or consumer spending</td><td>❌ Generally no</td><td>Using long-term debt for short-term spending is expensive</td></tr>
+          <tr><td>Stock market investing</td><td>❌ High risk</td><td>Market volatility + mandatory mortgage payment = dangerous combination</td></tr>
+        </tbody>
+      </table>
+
+      <h2>What Do You Need to Qualify?</h2>
+      <p>Cash-out refinances have slightly stricter requirements than rate-and-term refis:</p>
+
+      <table>
+        <thead>
+          <tr><th>Requirement</th><th>Typical Standard</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Credit score</td><td>620+ (conventional); 740+ for best rates</td></tr>
+          <tr><td>LTV after cash-out</td><td>80% max (conventional)</td></tr>
+          <tr><td>DTI ratio</td><td>43–50% depending on lender</td></tr>
+          <tr><td>Equity required</td><td>20% remaining after cash-out</td></tr>
+          <tr><td>Income verification</td><td>Yes — W-2, tax returns, or bank statements</td></tr>
+          <tr><td>Seasoning requirement</td><td>12 months of ownership (most lenders)</td></tr>
+          <tr><td>Appraisal</td><td>Required — lender orders their own</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Current Cash-Out Refi Rates (May 2026)</h2>
+      <p>Cash-out refinance rates typically run <strong>0.25–0.5% higher</strong> than standard rate-and-term refi rates because lenders see them as slightly higher risk. As of May 2026, expect rates in the <strong>6.5–7.25% range</strong> for well-qualified borrowers on conventional cash-out refis.</p>
+
+      <p>Your actual rate depends on your credit score, LTV, loan amount, and the lender. Getting quotes from at least 3 lenders is always worth it — rate differences of 0.25% on a $400,000 loan equal about $60/month and over $21,000 over 30 years.</p>
+
+      <div class="cta-box">
+        <h3>See Exactly How Much You Can Pull Out</h3>
+        <p>Enter your home value, mortgage balance, and the cash you want. Our calculator shows your new payment, LTV, closing costs, and break-even timeline — instantly.</p>
+        <a href="/#equity">Use the Cash-Out Calculator</a>
+        <a href="/apply.html" class="secondary">Talk to a Loan Officer →</a>
+      </div>
+
+      <p style="font-size:0.72rem; color:#8a9ab0; margin-top:2rem; padding-top:1rem; border-top:1px solid #edf0f5;">
+        <strong>Disclosure:</strong> This article is for educational purposes only and does not constitute financial or lending advice. Rates cited reflect market conditions as of May 2026 and change frequently. Maximum LTV, qualifying requirements, and loan terms vary by lender. Always consult a licensed loan officer before making any refinancing decision.
+      </p>
+    </article>
+
+    <div class="sidebar">
+      <div class="sidebar-cta">
+        <h4>🏦 Free Cash-Out Calculator</h4>
+        <p>See your new payment, LTV, and break-even timeline in seconds.</p>
+        <a href="/#equity">Calculate Now</a>
+        <a href="/apply.html" class="outline">Talk to a Loan Officer</a>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📚 More Calculators</h4>
+        <ul>
+          <li>🏠 <a href="/">Mortgage Calculator</a></li>
+          <li>🏦 <a href="/">HELOC Calculator</a></li>
+          <li>💳 <a href="/">Debt Consolidation</a></li>
+          <li>📈 <a href="/">DSCR / Investor</a></li>
+          <li>🔍 <a href="/">Rate Finder</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>✅ Cash-Out Refi Quick Facts</h4>
+        <ul>
+          <li>Max 80% LTV (conventional)</li>
+          <li>620+ credit score required</li>
+          <li>Replaces your existing mortgage</li>
+          <li>2–3% closing costs typical</li>
+          <li>12-month seasoning required</li>
+          <li>Appraisal always required</li>
+          <li>Fixed rate — payment won't change</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📖 Related Articles</h4>
+        <ul>
+          <li>📈 <a href="/dscr-loan-calculator">DSCR Loan Calculator Guide</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="/">Calculators</a>
+      <a href="/about.html">About</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/apply.html">Apply for a Loan</a>
+    </div>
+    <p>myloanbreakdown.com — Free loan calculators for every loan type. Not a lender. Not financial advice. Educational purposes only. HUD Housing Counseling: 1-800-569-4287.</p>
+  </div>
+
+</body>
+</html>

@@ -1,6 +1,11 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+  "routes": [
+    { "src": "/ads.txt",    "dest": "/ads.txt"    },
+    { "src": "/sitemap.xml","dest": "/sitemap.xml" },
+    { "src": "/about.html", "dest": "/about.html"  },
+    { "src": "/privacy.html","dest": "/privacy.html"},
+    { "src": "/terms.html", "dest": "/terms.html"  },
+    { "src": "/(.*)",       "dest": "/"            }
   ]
 }

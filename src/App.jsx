@@ -768,17 +768,25 @@ export default function LoanCalcSuite() {
   return (
     <div style={{ minHeight: "100vh", background: S.bg, fontFamily: "'DM Sans', sans-serif", color: S.text }}>
 
-      {/* ── HEADER ── */}
+   {/* ── HEADER ── */}
       <div style={{ background: "#ffffff", borderBottom: `1px solid rgba(0,0,0,0.09)`, padding: "1rem 1.5rem", boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.25rem" }}>
-            <span style={{ fontSize: "1.1rem" }}>💰</span>
-            <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(1.1rem,2.5vw,1.5rem)", fontWeight: 800, margin: 0, letterSpacing: "-0.02em" }}>
-              Complete Loan Calculator Suite
-            </h1>
-            <span style={{ fontSize: "0.58rem", background: "#e0f2fe", color: "#0284c7", border: "1px solid #bae6fd", borderRadius: "4px", padding: "0.1rem 0.45rem", fontWeight: 700 }}>2026</span>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.25rem" }}>
+              <span style={{ fontSize: "1.1rem" }}>💰</span>
+              <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(1.1rem,2.5vw,1.5rem)", fontWeight: 800, margin: 0, letterSpacing: "-0.02em" }}>
+                My Loan Breakdown
+              </h1>
+              <span style={{ fontSize: "0.58rem", background: "#e0f2fe", color: "#0284c7", border: "1px solid #bae6fd", borderRadius: "4px", padding: "0.1rem 0.45rem", fontWeight: 700 }}>LIVE RATES</span>
+            </div>
+            <p style={{ margin: 0, fontSize: "0.72rem", color: S.muted }}>All loan types · Typed inputs · Full amortization · Live rates · DSCR · Equity · Rate finder</p>
           </div>
-          <p style={{ margin: 0, fontSize: "0.72rem", color: S.muted }}>All loan types · Typed inputs · Full amortization · Live rates · DSCR · Equity · Rate finder</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <a href="/about.html"   style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>About</a>
+            <a href="/privacy.html" style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Privacy</a>
+            <a href="/terms.html"   style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Terms</a>
+            <a href="/apply.html" style={{ display: "inline-block", padding: "0.45rem 1.1rem", background: "linear-gradient(135deg,#0284c7,#0ea5e9)", color: "#fff", borderRadius: "7px", textDecoration: "none", fontSize: "0.78rem", fontWeight: 700 }}>Apply for a Loan →</a>
+          </div>
         </div>
       </div>
 

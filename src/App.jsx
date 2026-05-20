@@ -913,6 +913,34 @@ export default function LoanCalcSuite() {
             </Card>
 
             <Alert type="tip">🟢 Live rates (30yr, 15yr, Prime) update automatically each week from Freddie Mac PMMS via the Federal Reserve FRED database. FHA, VA, USDA, ARM, HELOC, and HE Loan rates are derived using historical spreads. DSCR and Hard Money rates are manually updated monthly. Always verify with your lender before making any decisions.</Alert>
+          {/* Resources & Guides */}
+            <div style={{ marginTop: "2rem" }}>
+              <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: S.muted, marginBottom: "1rem" }}>📚 Resources & Guides</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px,1fr))", gap: "0.75rem" }}>
+                {[
+                  {
+                    title: "DSCR Loan Calculator: How to Qualify Based on Rental Income",
+                    desc: "Learn how DSCR loans work, what ratio you need, and how to run the numbers on any rental property.",
+                    tag: "Investment Loans",
+                    color: "#b45309",
+                    bg: "#fff7ed",
+                    border: "#fdba74",
+                    href: "/dscr-loan-calculator",
+                    time: "6 min read",
+                  },
+                ].map(article => (
+                  <a key={article.href} href={article.href} style={{ textDecoration: "none", display: "block", background: "#fff", border: `1px solid rgba(0,0,0,0.08)`, borderRadius: "12px", padding: "1.25rem", transition: "box-shadow 0.15s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.6rem" }}>
+                      <span style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", background: article.bg, color: article.color, border: `1px solid ${article.border}`, borderRadius: "4px", padding: "0.15rem 0.5rem" }}>{article.tag}</span>
+                      <span style={{ fontSize: "0.6rem", color: S.muted }}>{article.time}</span>
+                    </div>
+                    <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f1f35", lineHeight: 1.35, marginBottom: "0.4rem" }}>{article.title}</div>
+                    <div style={{ fontSize: "0.72rem", color: S.muted, lineHeight: 1.5 }}>{article.desc}</div>
+                    <div style={{ marginTop: "0.75rem", fontSize: "0.72rem", color: S.accent, fontWeight: 600 }}>Read article →</div>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 

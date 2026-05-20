@@ -2474,6 +2474,13 @@ export default function LoanCalcSuite() {
           <a href="/terms.html"   style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>Terms of Use</a>
         </div>
         <p style={{ fontSize: "0.6rem", color: "#8a9ab0", margin: 0, lineHeight: 1.7, maxWidth: 800, marginInline: "auto" }}>
+          <div style={{ background: "linear-gradient(135deg,#eff8ff,#e0f2fe)", border: "1px solid #bae6fd", borderRadius: "12px", padding: "1.25rem 1.5rem", marginTop: "1rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f1f35", marginBottom: "0.2rem" }}>Ready to move forward?</div>
+                    <div style={{ fontSize: "0.72rem", color: S.muted }}>Talk to a licensed loan officer — no credit pull, no obligation.</div>
+                  </div>
+                  <a href="/apply.html" style={{ display: "inline-block", padding: "0.6rem 1.4rem", background: "linear-gradient(135deg,#0284c7,#0ea5e9)", color: "#fff", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: 700, whiteSpace: "nowrap" }}>Apply Now →</a>
+                </div>
           <strong style={{ color: "#374151" }}>Disclosure:</strong> All calculations are estimates for educational purposes only and do not constitute financial, legal, or lending advice. Market rates sourced from Freddie Mac PMMS, Bankrate, and industry publications as of {MARKET_RATES.updated}. Actual rates and terms are determined by lenders based on your creditworthiness, income, DTI, and other factors. Consult a licensed financial advisor or HUD-approved housing counselor (1-800-569-4287) before any borrowing decision.
           <br />HUD Counseling: 1-800-569-4287 · CFPB: consumerfinance.gov/complaint · Student Aid: studentaid.gov · VA: va.gov
         </p>

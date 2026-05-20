@@ -1,7 +1,6 @@
 {
   "version": 2,
   "rewrites": [
-    { "src": "/dscr-loan-calculator", "dest": "/dscr-loan-calculator.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

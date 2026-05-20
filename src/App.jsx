@@ -1680,7 +1680,13 @@ export default function LoanCalcSuite() {
                     <AmortTable schedule={eqAmort} view={amortView} setView={setAmortView} />
                   </Card>
                 )}
-
+<div style={{ background: "linear-gradient(135deg,#f0fdf4,#dcfce7)", border: "1px solid #86efac", borderRadius: "12px", padding: "1.25rem 1.5rem", marginTop: "0.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f1f35", marginBottom: "0.2rem" }}>Want to access your equity?</div>
+                    <div style={{ fontSize: "0.72rem", color: S.muted }}>Get matched with a loan officer for HELOC, HE Loan, or Cash-Out Refi.</div>
+                  </div>
+                  <a href="/apply.html" style={{ display: "inline-block", padding: "0.6rem 1.4rem", background: "linear-gradient(135deg,#059669,#34d399)", color: "#fff", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: 700, whiteSpace: "nowrap" }}>Apply Now →</a>
+                </div>
                 <Alert type="tip">Ask every lender: full APR (not just rate), closing costs ($0–$3K), annual fee, prepayment penalty, and rate cap (HELOC). Use at least 3 quotes. Credit unions often beat banks on HELOC rates.</Alert>
               </div>
             </div>

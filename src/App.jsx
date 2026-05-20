@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 // ─── ADSENSE AD UNIT ─────────────────────────────────────────────────────────
 // Replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID after AdSense approval
@@ -2535,6 +2536,7 @@ export default function LoanCalcSuite() {
           <strong style={{ color: "#374151" }}>Disclosure:</strong> All calculations are estimates for educational purposes only and do not constitute financial, legal, or lending advice. Market rates sourced from Freddie Mac PMMS, Bankrate, and industry publications as of {MARKET_RATES.updated}. Actual rates and terms are determined by lenders based on your creditworthiness, income, DTI, and other factors. Consult a licensed financial advisor or HUD-approved housing counselor (1-800-569-4287) before any borrowing decision.
           <br />HUD Counseling: 1-800-569-4287 · CFPB: consumerfinance.gov/complaint · Student Aid: studentaid.gov · VA: va.gov
         </p>
+        <Analytics />
       </div>
     </div>
   );

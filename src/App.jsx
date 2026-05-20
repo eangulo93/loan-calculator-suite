@@ -2043,6 +2043,13 @@ export default function LoanCalcSuite() {
                   </Alert>
                 )}
                 <Alert type="tip">
+                  <div style={{ background: "linear-gradient(135deg,#eff8ff,#e0f2fe)", border: "1px solid #bae6fd", borderRadius: "12px", padding: "1.25rem 1.5rem", marginTop: "0.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f1f35", marginBottom: "0.2rem" }}>Ready to consolidate your debt?</div>
+                    <div style={{ fontSize: "0.72rem", color: S.muted }}>Talk to a licensed loan officer about using your equity to simplify your payments.</div>
+                  </div>
+                  <a href="/apply.html" style={{ display: "inline-block", padding: "0.6rem 1.4rem", background: "linear-gradient(135deg,#0284c7,#0ea5e9)", color: "#fff", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: 700, whiteSpace: "nowrap" }}>Apply Now →</a>
+                </div>
                   Consolidating into a home loan converts unsecured debt (credit cards) into secured debt (your home). If you fall behind on payments, your home is at risk — a risk that didn't exist with credit cards. Only consolidate if you're committed to not running up the cards again.
                 </Alert>
 

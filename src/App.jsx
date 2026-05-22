@@ -2534,6 +2534,7 @@ export default function LoanCalcSuite() {
       <div style={{ borderTop: `1px solid rgba(0,0,0,0.08)`, padding: "1.25rem 1.5rem", textAlign: "center", background: "#f5f8fc" }}>
         <div style={{ display: "flex", gap: "1.5rem", justifyContent: "center", marginBottom: "0.75rem", flexWrap: "wrap" }}>
           <a href="/about.html"   style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>About</a>
+          <a href="/contact.html" style={{ fontSize: "0.78rem", color: "#93c5fd", textDecoration: "none" }}>Contact</a>
           <a href="/privacy.html" style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>Privacy Policy</a>
           <a href="/terms.html"   style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>Terms of Use</a>
         </div>

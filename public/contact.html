@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — My Loan Breakdown</title>
+  <meta name="description" content="Contact My Loan Breakdown. Talk to a licensed loan officer with 25+ years of experience. Serving CA, NV, LA, TX, AZ, FL, TN, and CO. No obligation, no pressure." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f0f4f9; color: #1a2537; line-height: 1.8; }
+    .header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.09); padding: 1rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: #0f1f35; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.75rem; color: #5a6e84; text-decoration: none; font-weight: 500; }
+    .apply-btn { padding: 0.4rem 1rem; background: linear-gradient(135deg,#0284c7,#0ea5e9); color: #fff; border-radius: 7px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+
+    .hero { background: linear-gradient(135deg,#1e3a5f,#0284c7); padding: 2.5rem 1.5rem; text-align: center; color: #fff; }
+    .hero h1 { font-size: clamp(1.6rem,3.5vw,2.2rem); font-weight: 800; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+    .hero p { font-size: 0.95rem; opacity: 0.88; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+
+    .main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem; align-items: start; }
+    @media (max-width: 680px) { .main { grid-template-columns: 1fr; } }
+
+    .form-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .form-card h2 { font-size: 1.2rem; font-weight: 800; color: #0f1f35; margin-bottom: 0.3rem; }
+    .form-card .subtitle { font-size: 0.78rem; color: #5a6e84; margin-bottom: 1.5rem; line-height: 1.5; }
+
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4a6278; margin-bottom: 0.35rem; }
+    input, select, textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1px solid #d1dbe6; border-radius: 8px; font-size: 0.88rem; color: #1a2537; background: #f8fafc; font-family: inherit; outline: none; transition: border-color 0.15s, box-shadow 0.15s; appearance: none; }
+    input:focus, select:focus, textarea:focus { border-color: #0284c7; background: #fff; box-shadow: 0 0 0 3px rgba(2,132,199,0.12); }
+    textarea { resize: vertical; min-height: 100px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+
+    .submit-btn { width: 100%; padding: 0.9rem; background: linear-gradient(135deg,#0284c7,#0ea5e9); color: #fff; font-size: 1rem; font-weight: 700; border: none; border-radius: 9px; cursor: pointer; margin-top: 0.5rem; transition: opacity 0.15s, transform 0.1s; font-family: inherit; }
+    .submit-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .disclaimer { font-size: 0.63rem; color: #8a9ab0; text-align: center; margin-top: 0.75rem; line-height: 1.5; }
+
+    .success-msg { display: none; background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 1.5rem; text-align: center; margin-top: 1rem; }
+    .success-msg .check { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .success-msg h3 { color: #15803d; font-size: 1.1rem; margin-bottom: 0.35rem; }
+    .success-msg p { color: #5a6e84; font-size: 0.82rem; line-height: 1.6; }
+
+    .sidebar { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.25rem; }
+    .info-card h3 { font-size: 0.88rem; font-weight: 700; color: #0f1f35; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+    .info-card p { font-size: 0.78rem; color: #4a6278; line-height: 1.6; margin-bottom: 0.5rem; }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card ul { list-style: none; }
+    .info-card ul li { font-size: 0.76rem; color: #4a6278; padding: 0.3rem 0; border-bottom: 1px solid #edf0f5; display: flex; align-items: center; gap: 0.4rem; }
+    .info-card ul li:last-child { border-bottom: none; }
+    .info-card ul li::before { content: "✓"; color: #0284c7; font-weight: 700; flex-shrink: 0; }
+
+    .veteran-card { background: linear-gradient(135deg,#1e3a5f,#0f172a); border-radius: 12px; padding: 1.25rem; color: #fff; text-align: center; }
+    .veteran-card .flag { font-size: 2rem; margin-bottom: 0.5rem; }
+    .veteran-card h3 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .veteran-card p { font-size: 0.72rem; color: #94a3b8; line-height: 1.5; }
+
+    .states-card { background: #eff8ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 1.25rem; }
+    .states-card h3 { font-size: 0.82rem; font-weight: 700; color: #0284c7; margin-bottom: 0.65rem; }
+    .states-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+    .state-item { font-size: 0.73rem; color: #1e3a5f; font-weight: 500; padding: 0.2rem 0; }
+
+    .footer { background: #1e3a5f; padding: 1.25rem 1.5rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .footer-links a { color: #93c5fd; font-size: 0.75rem; text-decoration: none; }
+    .footer p { font-size: 0.62rem; color: #64748b; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <span>💰</span>
+        <span class="logo-text">My Loan Breakdown</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Calculators</a>
+        <a href="/about.html">About</a>
+        <a href="/apply.html" class="apply-btn">Apply for a Loan →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Contact Us</h1>
+    <p>Have a question about your loan options? Send us a message and a licensed loan officer with 25+ years of experience will get back to you within 1 business day.</p>
+  </div>
+
+  <div class="main">
+
+    <div class="form-card">
+      <h2>Send Us a Message</h2>
+      <p class="subtitle">No obligation. No pressure. Just real answers from licensed professionals.</p>
+
+      <form id="contactForm" action="https://formspree.io/f/xbdbdwdj" method="POST">
+        <input type="hidden" name="_subject" value="New Contact Message — My Loan Breakdown" />
+        <input type="text" name="_gotcha" style="display:none" />
+
+        <div class="two-col">
+          <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" name="First Name" required placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label>Last Name *</label>
+            <input type="text" name="Last Name" required placeholder="Smith" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" name="Email" required placeholder="john@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" name="Phone" placeholder="(555) 555-5555" />
+        </div>
+
+        <div class="form-group">
+          <label>What Can We Help You With? *</label>
+          <select name="Topic" required>
+            <option value="" disabled selected>Select a topic...</option>
+            <option>General mortgage question</option>
+            <option>Refinance inquiry</option>
+            <option>Home equity / HELOC</option>
+            <option>DSCR / Investment property</option>
+            <option>Debt consolidation</option>
+            <option>VA loan question</option>
+            <option>FHA loan question</option>
+            <option>Calculator question</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Your Message *</label>
+          <textarea name="Message" required placeholder="Tell us what you're looking to accomplish or what questions you have. The more detail you share, the better we can help."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Best Way to Reach You</label>
+          <select name="Preferred Contact">
+            <option value="" disabled selected>Select preference...</option>
+            <option>Email</option>
+            <option>Phone call</option>
+            <option>Text message</option>
+            <option>Any</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message →</button>
+        <p class="disclaimer">We typically respond within 1 business day. Your information is never sold or shared with third parties.</p>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <div class="check">✅</div>
+        <h3>Message Received!</h3>
+        <p>Thank you for reaching out. A licensed loan officer will review your message and get back to you within 1 business day. In the meantime, feel free to use our free calculators to run your numbers.</p>
+        <a href="/" style="display:inline-block; margin-top:1rem; padding:0.6rem 1.5rem; background:#0284c7; color:#fff; border-radius:7px; text-decoration:none; font-weight:700; font-size:0.85rem;">← Back to Calculators</a>
+      </div>
+    </div>
+
+    <div class="sidebar">
+
+      <div class="veteran-card">
+        <div class="flag">🎖️</div>
+        <h3>Veteran-Run Business</h3>
+        <p>My Loan Breakdown is proudly veteran-owned and operated with over 25 years of mortgage industry experience.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>✅ What to Expect</h3>
+        <ul>
+          <li>Response within 1 business day</li>
+          <li>No credit pull required to ask questions</li>
+          <li>No pressure, no obligation</li>
+          <li>Licensed loan officer — not a call center</li>
+          <li>Your info is never sold to third parties</li>
+          <li>25+ years of hands-on experience</li>
+        </ul>
+      </div>
+
+      <div class="states-card">
+        <h3>📍 Licensed States</h3>
+        <div class="states-grid">
+          <div class="state-item">🏴 California</div>
+          <div class="state-item">🏴 Nevada</div>
+          <div class="state-item">🏴 Louisiana</div>
+          <div class="state-item">🏴 Texas</div>
+          <div class="state-item">🏴 Arizona</div>
+          <div class="state-item">🏴 Florida</div>
+          <div class="state-item">🏴 Tennessee</div>
+          <div class="state-item">🏴 Colorado</div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>💡 Before You Message</h3>
+        <p>Run your numbers first — our free calculators give you accurate estimates in seconds. Then bring your numbers to the conversation and we can get started faster.</p>
+        <a href="/" style="display:inline-block; margin-top:0.75rem; padding:0.45rem 1rem; background:#eff8ff; border:1px solid #bae6fd; color:#0284c7; border-radius:6px; text-decoration:none; font-size:0.75rem; font-weight:600;">Use the Free Calculators →</a>
+      </div>
+
+      <div class="info-card">
+        <h3>📋 Ready to Apply?</h3>
+        <p>If you're ready to move forward on a loan, our application form collects everything we need to get started.</p>
+        <a href="/apply.html" style="display:inline-block; margin-top:0.75rem; padding:0.45rem 1rem; background:#0284c7; color:#fff; border-radius:6px; text-decoration:none; font-size:0.75rem; font-weight:600;">Apply for a Loan →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="/">Calculators</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/apply.html">Apply for a Loan</a>
+    </div>
+    <p>myloanbreakdown.com — Free loan calculators for every loan type. Veteran-run. Licensed. 25+ years of experience. Not financial advice. Educational purposes only. Equal Housing Opportunity. HUD Counseling: 1-800-569-4287.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMsg');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('.submit-btn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          btn.textContent = 'Send Message →';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again or email eangulo@westonecap.com directly.');
+        }
+      } catch (err) {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email eangulo@westonecap.com directly.');
+      }
+    });
+  </script>
+
+</body>
+</html>

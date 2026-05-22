@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 // ─── ADSENSE AD UNIT ─────────────────────────────────────────────────────────
 // Replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID after AdSense approval
-const ADSENSE_PUBLISHER_ID = "ca-pub-XXXXXXXXXXXXXXXX";
+const ADSENSE_PUBLISHER_ID = "ca-pub-9247721766299360";
 
 function AdUnit({ slot, style = {} }) {
   const adRef = useRef(null);
@@ -17,7 +17,7 @@ function AdUnit({ slot, style = {} }) {
       }
     } catch (e) {}
   }, []);
-  if (ADSENSE_PUBLISHER_ID === "ca-pub-XXXXXXXXXXXXXXXX") {
+  if (ADSENSE_PUBLISHER_ID === "ca-pub-9247721766299360") {
     return (
       <div style={{ minHeight: "90px", background: "#f5f8fc", border: "1px dashed #c5d0de", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0.75rem 0", ...style }}>
         <span style={{ fontSize: "0.65rem", color: "#9ba8b5" }}>Ad — add your AdSense publisher ID to activate</span>
@@ -814,7 +814,7 @@ export default function LoanCalcSuite() {
 
       {/* Top Banner Ad */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0.5rem 1rem 0" }}>
-        <AdUnit slot="YOUR_TOP_BANNER_SLOT_ID" />
+        <AdUnit slot="ca-pub-9247721766299360" />
       </div>
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "1.25rem 1rem 4rem" }}>
@@ -2530,7 +2530,7 @@ export default function LoanCalcSuite() {
 
       {/* Footer Ad */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem" }}>
-        <AdUnit slot="YOUR_FOOTER_SLOT_ID" />
+        <AdUnit slot="ca-pub-9247721766299360" />
       </div>
 
       {/* Footer */}

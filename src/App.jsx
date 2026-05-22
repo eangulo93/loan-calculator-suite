@@ -433,7 +433,6 @@ function PrinIntBar({ principal, interest, pmi = 0, tax = 0, ins = 0, hoa = 0 })
 // MAIN CALCULATOR
 // ═══════════════════════════════════════════════════════════════════════════
 // ─── FRED API CONFIG ────────────────────────────────────────────────────────
-const FRED_KEY = "15324c2be136ca5331844402e6a2aa59";
 const FRED = (series) => `/api/fred?series=${series}`;
   `https://api.stlouisfed.org/fred/series/observations?series_id=${series}&api_key=${FRED_KEY}&limit=1&sort_order=desc&file_type=json`;
 

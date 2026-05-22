@@ -439,6 +439,11 @@ const FRED = (series) =>
 
 export default function LoanCalcSuite() {
   const [tab, setTab] = useState("rates");
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    const validTabs = ["rates", "calc", "equity", "debtcon", "dscr", "finder"];
+    if (validTabs.includes(hash)) setTab(hash);
+  }, []);
 
   // ── Live market rates from FRED ──────────────────────────────────────────
   const [liveRates, setLiveRates]   = useState(null);   // null = loading, {} = loaded

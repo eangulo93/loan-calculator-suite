@@ -944,6 +944,16 @@ export default function LoanCalcSuite() {
                     href: "/cash-out-refinance-calculator.html",
                     time: "7 min read",
                   },
+                  {
+                    title: "How Much Can I Borrow Against My Home?",
+                    desc: "Learn the 80% LTV rule, how lenders calculate your max, and which equity product is right for your situation.",
+                    tag: "Home Equity",
+                    color: "#059669",
+                    bg: "#f0fdf4",
+                    border: "#86efac",
+                    href: "/how-much-can-i-borrow-against-my-home.html",
+                    time: "7 min read",
+                  },
                 ].map(article => (
                   <a key={article.href} href={article.href} style={{ textDecoration: "none", display: "block", background: "#fff", border: `1px solid rgba(0,0,0,0.08)`, borderRadius: "12px", padding: "1.25rem", transition: "box-shadow 0.15s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.6rem" }}>

@@ -9,6 +9,7 @@
     { "src": "/sitemap.xml",                      "dest": "/sitemap.xml"                      },
     { "src": "/dscr-loan-calculator.html",        "dest": "/dscr-loan-calculator.html"        },
     { "src": "/cash-out-refinance-calculator.html","dest": "/cash-out-refinance-calculator.html"},
+    { "src": "/how-much-can-i-borrow-against-my-home.html", "dest": "/how-much-can-i-borrow-against-my-home.html" },
     { "src": "/(.*)",                             "dest": "/index.html"                       }
   ]
 }

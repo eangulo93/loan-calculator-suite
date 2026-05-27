@@ -932,6 +932,16 @@ export default function LoanCalcSuite() {
                     time: "8 min read",
                   },
                   {
+                    title: "VA Loan Calculator: Zero Down for Veterans",
+                    desc: "Learn how VA loans work, what the funding fee costs, eligibility requirements, and how VA rates compare to conventional and FHA loans.",
+                    tag: "VA Loans",
+                    color: "#059669",
+                    bg: "#f0fdf4",
+                    border: "#86efac",
+                    href: "/va-loan-calculator.html",
+                    time: "8 min read",
+                  },
+                  {
                     title: "DSCR Loan Calculator: How to Qualify Based on Rental Income",
                     desc: "Learn how DSCR loans work, what ratio you need, and how to run the numbers on any rental property.",
                     tag: "Investment Loans",

@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VA Loan Calculator: Zero Down for Veterans (2026 Guide)</title>
+  <meta name="description" content="Use our free VA loan calculator to estimate your monthly payment with zero down. Learn VA loan limits, funding fees, eligibility requirements, and how VA rates compare to conventional loans in 2026." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f0f4f9; color: #1a2537; line-height: 1.8; }
+    .header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.09); padding: 1rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: #0f1f35; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.75rem; color: #5a6e84; text-decoration: none; font-weight: 500; }
+    .apply-btn { padding: 0.4rem 1rem; background: linear-gradient(135deg,#0284c7,#0ea5e9); color: #fff; border-radius: 7px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+    .article-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; grid-template-columns: 1fr 280px; gap: 2rem; align-items: start; }
+    @media (max-width: 720px) { .article-wrap { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+    article { background: #fff; border-radius: 14px; padding: 2.5rem; border: 1px solid rgba(0,0,0,0.07); }
+    .category-tag { display: inline-block; background: #f0fdf4; color: #059669; border: 1px solid #86efac; border-radius: 5px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; margin-bottom: 1rem; }
+    article h1 { font-size: clamp(1.5rem,3.5vw,2rem); font-weight: 800; color: #0f1f35; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .article-meta { font-size: 0.73rem; color: #8a9ab0; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #edf0f5; }
+    article p { margin-bottom: 1.25rem; font-size: 0.95rem; color: #2a3d52; }
+    article h2 { font-size: 1.25rem; font-weight: 800; color: #0f1f35; margin: 2rem 0 0.75rem; letter-spacing: -0.01em; }
+    article h3 { font-size: 1rem; font-weight: 700; color: #0f1f35; margin: 1.5rem 0 0.5rem; }
+    article a { color: #0284c7; font-weight: 600; }
+    article ul, article ol { margin: 0 0 1.25rem 1.5rem; font-size: 0.95rem; color: #2a3d52; }
+    article ul li, article ol li { margin-bottom: 0.4rem; }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.88rem; }
+    .callout-blue { background: #eff8ff; border-left: 4px solid #0284c7; color: #1e3a5f; }
+    .callout-green { background: #f0fdf4; border-left: 4px solid #059669; color: #14532d; }
+    .callout-yellow { background: #fffbeb; border-left: 4px solid #d97706; color: #78350f; }
+    .callout-red { background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; }
+    .callout-navy { background: #1e3a5f; border-left: 4px solid #93c5fd; color: #e0f2fe; }
+    .callout strong { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+    th { background: #1e3a5f; color: #fff; padding: 0.65rem 1rem; text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #edf0f5; color: #2a3d52; }
+    tr:nth-child(even) td { background: #f9fbfd; }
+    tr:last-child td { border-bottom: none; }
+    .veteran-hero { background: linear-gradient(135deg,#1e3a5f,#0f172a); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .veteran-hero .flag { font-size: 3.5rem; flex-shrink: 0; }
+    .veteran-hero h3 { color: #fff; font-size: 1.1rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .veteran-hero p { color: #94a3b8; font-size: 0.82rem; line-height: 1.6; margin: 0; }
+    .benefit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 0.75rem; margin: 1.25rem 0; }
+    .benefit-card { background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 1rem; }
+    .benefit-icon { font-size: 1.5rem; margin-bottom: 0.35rem; }
+    .benefit-card h4 { font-size: 0.82rem; font-weight: 700; color: #14532d; margin-bottom: 0.25rem; }
+    .benefit-card p { font-size: 0.72rem; color: #166534; line-height: 1.4; margin: 0; }
+    .cta-box { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.75rem; text-align: center; margin: 2rem 0; color: #fff; }
+    .cta-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .cta-box p { font-size: 0.82rem; opacity: 0.88; margin-bottom: 1.1rem; }
+    .cta-box a { display: inline-block; padding: 0.7rem 1.75rem; background: #fff; color: #0284c7; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.88rem; margin: 0.3rem; }
+    .cta-box a.secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 1rem; }
+    .sidebar-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.25rem; }
+    .sidebar-card h4 { font-size: 0.82rem; font-weight: 700; color: #0f1f35; margin-bottom: 0.75rem; }
+    .sidebar-card ul { list-style: none; }
+    .sidebar-card ul li { font-size: 0.75rem; color: #4a6278; padding: 0.35rem 0; border-bottom: 1px solid #edf0f5; display: flex; align-items: center; gap: 0.4rem; }
+    .sidebar-card ul li:last-child { border-bottom: none; }
+    .sidebar-card ul li a { color: #0284c7; text-decoration: none; font-weight: 500; }
+    .sidebar-cta { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.25rem; text-align: center; color: #fff; }
+    .sidebar-cta h4 { font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .sidebar-cta p { font-size: 0.72rem; opacity: 0.85; margin-bottom: 0.85rem; line-height: 1.5; }
+    .sidebar-cta a { display: block; padding: 0.55rem 1rem; background: #fff; color: #0284c7; border-radius: 7px; text-decoration: none; font-weight: 700; font-size: 0.78rem; margin-bottom: 0.4rem; }
+    .sidebar-cta a.outline { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); margin-bottom: 0; }
+    .footer { background: #1e3a5f; padding: 1.25rem 1.5rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .footer-links a { color: #93c5fd; font-size: 0.75rem; text-decoration: none; }
+    .footer p { font-size: 0.62rem; color: #64748b; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <a href="/" class="logo"><span>💰</span><span class="logo-text">My Loan Breakdown</span></a>
+      <div class="nav-links">
+        <a href="/">Calculators</a>
+        <a href="/about.html">About</a>
+        <a href="/apply.html" class="apply-btn">Apply for a Loan →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <article>
+      <span class="category-tag">VA Loans</span>
+      <h1>VA Loan Calculator: Zero Down for Veterans (2026 Guide)</h1>
+      <div class="article-meta">Updated May 2026 · 8 min read · myloanbreakdown.com</div>
+
+      <div class="veteran-hero">
+        <div class="flag">🎖️</div>
+        <div>
+          <h3>The Most Powerful Mortgage Benefit in America</h3>
+          <p>VA loans allow eligible veterans, active-duty service members, and surviving spouses to buy a home with zero down payment, no PMI, and the lowest average rates of any loan type. If you've earned this benefit through service, you should understand exactly how to use it.</p>
+        </div>
+      </div>
+
+      <p>The VA home loan benefit is one of the most valuable — and most underused — financial benefits available to veterans. Hundreds of thousands of veterans who qualify never use it, often because they don't know they're eligible or they don't fully understand how the loan works. This guide fixes that.</p>
+
+      <div class="callout callout-blue">
+        <strong>🧮 Free VA Loan Calculator</strong>
+        Enter your purchase price, VA funding fee status, and rate. See your exact monthly payment with zero down, how it compares to a conventional loan, and the total savings over the life of the loan. <a href="/#calc">Use the VA Loan Calculator →</a>
+      </div>
+
+      <h2>VA Loan Benefits: What Makes This Different</h2>
+
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <h4>Zero Down Payment</h4>
+          <p>Buy a home with no down payment — preserving your savings for emergencies, investments, or life.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🚫</div>
+          <h4>No PMI — Ever</h4>
+          <p>No private mortgage insurance regardless of your down payment. This saves $100–$300/month vs. conventional with less than 20% down.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📉</div>
+          <h4>Lowest Rates Available</h4>
+          <p>VA loans average 0.5–0.75% below conventional rates due to the government guarantee. On a $400K loan that's $100–$150/month.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <h4>Reusable Benefit</h4>
+          <p>You can use your VA benefit multiple times throughout your life — including while still paying off a previous VA loan.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🏠</div>
+          <h4>100% Cash-Out Refi</h4>
+          <p>VA cash-out refinancing allows you to access up to 100% of your home's value — far beyond the 80% cap on conventional loans.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <h4>Assumable Loan</h4>
+          <p>VA loans can be assumed by a buyer when you sell — a major selling advantage if your rate is lower than future market rates.</p>
+        </div>
+      </div>
+
+      <h2>Who Is Eligible for a VA Loan?</h2>
+      <p>Eligibility is based on your service history. Generally you qualify if you meet one of the following:</p>
+
+      <table>
+        <thead>
+          <tr><th>Service Category</th><th>Minimum Service Requirement</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Active duty (wartime)</td><td>90 consecutive days</td></tr>
+          <tr><td>Active duty (peacetime)</td><td>181 consecutive days</td></tr>
+          <tr><td>National Guard / Reserves</td><td>6 years, or 90 days active duty under Title 10</td></tr>
+          <tr><td>Discharged for service-connected disability</td><td>Any length of service</td></tr>
+          <tr><td>Surviving spouse</td><td>Spouse of veteran who died in service or from service-connected disability</td></tr>
+        </tbody>
+      </table>
+
+      <p>The first step is obtaining your <strong>Certificate of Eligibility (COE)</strong> from the VA. Your lender can often pull this directly through the VA's online system in minutes — you don't need to request it yourself first.</p>
+
+      <h2>VA Loan Limits in 2026</h2>
+      <p>In 2020, Congress eliminated VA loan limits for veterans with full entitlement — meaning if you have never used your VA benefit (or have paid off and restored it), there is <strong>no maximum loan amount</strong>. The VA will guarantee any loan amount your lender approves you for with zero down.</p>
+
+      <p>If you have <strong>remaining entitlement</strong> (you have an active VA loan you haven't paid off), county loan limits apply to the zero-down portion. The 2026 conforming loan limit is <strong>$806,500</strong> in most areas, with higher limits in high-cost counties (up to $1,209,750).</p>
+
+      <div class="callout callout-green">
+        <strong>✅ Full Entitlement = No Loan Limit</strong>
+        Most first-time VA buyers have full entitlement. If you've never used your VA benefit or have fully paid off and restored a previous VA loan, you can borrow any amount your lender approves — $500K, $800K, $1.2M — with zero down and no PMI.
+      </div>
+
+      <h2>The VA Funding Fee: What It Is and What You Pay</h2>
+      <p>The VA doesn't charge monthly mortgage insurance, but it does charge a one-time <strong>VA Funding Fee</strong> at closing. This fee funds the VA loan program so it remains available for future veterans. It's typically rolled into the loan — so you don't pay it out of pocket.</p>
+
+      <table>
+        <thead>
+          <tr><th>Loan Type</th><th>Down Payment</th><th>First Use</th><th>Subsequent Use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Purchase / Cash-Out Refi</td><td>0%</td><td>2.15%</td><td>3.30%</td></tr>
+          <tr><td>Purchase / Cash-Out Refi</td><td>5–9.99%</td><td>1.50%</td><td>1.50%</td></tr>
+          <tr><td>Purchase / Cash-Out Refi</td><td>10%+</td><td>1.25%</td><td>1.25%</td></tr>
+          <tr><td>IRRRL (Streamline Refi)</td><td>N/A</td><td>0.50%</td><td>0.50%</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-green">
+        <strong>✅ Funding Fee Exemptions</strong>
+        Veterans receiving VA disability compensation of 10% or more are <strong>exempt from the funding fee entirely</strong>. Surviving spouses of veterans who died in service or from a service-connected disability are also exempt. This exemption can save thousands — always verify your disability rating before closing.
+      </div>
+
+      <h2>Current VA Loan Rates (May 2026)</h2>
+      <p>VA loans consistently offer the lowest rates of any mortgage type. Here's how they compare as of May 2026:</p>
+
+      <table>
+        <thead>
+          <tr><th>Loan Type</th><th>Avg Rate (30yr)</th><th>Avg Rate (15yr)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>VA Loan</strong></td><td><strong>5.75% – 6.25%</strong></td><td><strong>5.25% – 5.75%</strong></td></tr>
+          <tr><td>Conventional</td><td>6.36% – 6.75%</td><td>5.71% – 6.10%</td></tr>
+          <tr><td>FHA</td><td>6.19% – 6.50%</td><td>5.61% – 5.90%</td></tr>
+          <tr><td>USDA</td><td>6.12% – 6.40%</td><td>N/A</td></tr>
+        </tbody>
+      </table>
+
+      <p>The VA rate advantage adds up significantly over time. On a $400,000 loan, a 0.5% rate difference saves approximately <strong>$120/month</strong> — or <strong>$43,000 over 30 years</strong>.</p>
+
+      <h2>VA Loan vs. Conventional: Real Dollar Comparison</h2>
+
+      <table>
+        <thead>
+          <tr><th></th><th>VA Loan (0% down)</th><th>Conventional (5% down)</th><th>Conventional (20% down)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Purchase Price</strong></td><td>$450,000</td><td>$450,000</td><td>$450,000</td></tr>
+          <tr><td><strong>Down Payment</strong></td><td>$0</td><td>$22,500</td><td>$90,000</td></tr>
+          <tr><td><strong>Loan Amount</strong></td><td>$459,675*</td><td>$427,500</td><td>$360,000</td></tr>
+          <tr><td><strong>Rate (30yr)</strong></td><td>6.00%</td><td>6.50%</td><td>6.50%</td></tr>
+          <tr><td><strong>P&I Payment</strong></td><td>$2,757</td><td>$2,703</td><td>$2,275</td></tr>
+          <tr><td><strong>PMI</strong></td><td>$0</td><td>~$320/mo</td><td>$0</td></tr>
+          <tr><td><strong>Total Monthly</strong></td><td>$2,757</td><td>$3,023</td><td>$2,275</td></tr>
+          <tr><td><strong>Cash needed to close</strong></td><td>~$5,000</td><td>~$28,000</td><td>~$95,000</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.72rem; color:#8a9ab0;">*Includes 2.15% VA funding fee rolled into loan. Rates approximate as of May 2026.</p>
+
+      <p>The VA loan has a slightly higher monthly payment than the 5% conventional — but you keep $22,500 in your pocket at closing and pay $266/month less than the conventional with PMI. Most veterans come out significantly ahead with the VA loan.</p>
+
+      <h2>VA Loan Qualification Requirements</h2>
+
+      <h3>Credit Score</h3>
+      <p>The VA itself has no minimum credit score requirement. However, lenders set their own minimums — typically <strong>580–620</strong> for most lenders, with 640+ recommended for competitive rates. Some VA-specialist lenders will go to 500 with strong compensating factors.</p>
+
+      <h3>Debt-to-Income Ratio</h3>
+      <p>The VA uses a guideline of <strong>41% back-end DTI</strong>, but this is not a hard cap. The VA's residual income test is what really matters — you must have enough income left after all monthly payments to cover basic living expenses for your family size and geographic region.</p>
+
+      <h3>Residual Income</h3>
+      <p>This is the VA's unique qualifying factor. After all monthly obligations, you must have a minimum amount of money left over each month based on family size and region. This test is often more forgiving than a strict DTI cap — a veteran with a 50% DTI but strong income can still qualify if residual income requirements are met.</p>
+
+      <h3>Property Requirements</h3>
+      <p>The property must be your <strong>primary residence</strong> — VA loans cannot be used for investment properties or vacation homes. The home must also meet VA minimum property requirements (MPRs) — basic safety and livability standards that the VA appraiser will verify.</p>
+
+      <h2>VA IRRRL: The Streamline Refinance</h2>
+      <p>If you already have a VA loan, the <strong>Interest Rate Reduction Refinance Loan (IRRRL)</strong> — also called the VA Streamline Refi — is the simplest refinance available. No appraisal required, minimal paperwork, no income verification in most cases. You just need to refinance into a lower rate than your current VA loan.</p>
+
+      <p>The funding fee is just 0.50% — the lowest of any VA loan type. If you locked a VA loan at a higher rate in the last few years, the IRRRL is how you get the current lower rate with minimal friction.</p>
+
+      <h2>VA Cash-Out Refinance: Access 100% of Your Equity</h2>
+      <p>The VA cash-out refi is unlike any other loan product available. You can refinance up to <strong>100% of your home's appraised value</strong> — compared to 80% for conventional cash-out and 80% for FHA. If your home has appreciated significantly, this is an enormous advantage.</p>
+
+      <p>You can also use the VA cash-out refi to convert a conventional or FHA loan into a VA loan — picking up the lower rate and eliminating PMI in one transaction.</p>
+
+      <div class="callout callout-navy">
+        <strong>🎖️ A Note from Our Team</strong>
+        My Loan Breakdown is a veteran-run business. We've seen firsthand how many veterans leave this benefit on the table — either because they don't know they're eligible, or because a lender didn't take the time to explain it properly. If you served, you earned this. Use it.
+      </div>
+
+      <div class="cta-box">
+        <h3>Calculate Your VA Loan Payment Now</h3>
+        <p>Enter your purchase price and we'll show your exact payment with zero down, the VA funding fee, and how it compares to a conventional loan with PMI.</p>
+        <a href="/#calc">Use the VA Loan Calculator</a>
+        <a href="/apply.html" class="secondary">Talk to a Loan Officer →</a>
+      </div>
+
+      <p style="font-size:0.72rem; color:#8a9ab0; margin-top:2rem; padding-top:1rem; border-top:1px solid #edf0f5;">
+        <strong>Disclosure:</strong> This article is for educational purposes only and does not constitute financial or lending advice. VA loan eligibility, rates, funding fees, and requirements are subject to change. Always verify your eligibility and current terms with a VA-approved lender. Rates cited reflect market conditions as of May 2026. My Loan Breakdown is a veteran-owned business licensed in CA, NV, LA, TX, AZ, FL, TN, and CO.
+      </p>
+    </article>
+
+    <div class="sidebar">
+      <div class="sidebar-cta">
+        <h4>🎖️ Free VA Loan Calculator</h4>
+        <p>See your zero-down payment, funding fee, and savings vs. conventional.</p>
+        <a href="/#calc">Calculate VA Payment</a>
+        <a href="/apply.html" class="outline">Talk to a Loan Officer</a>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>✅ VA Loan Quick Facts</h4>
+        <ul>
+          <li>Zero down payment</li>
+          <li>No PMI — ever</li>
+          <li>No loan limit (full entitlement)</li>
+          <li>Lowest avg rates of any loan</li>
+          <li>Funding fee: 2.15% (1st use)</li>
+          <li>Exempt if 10%+ disability rating</li>
+          <li>41% DTI guideline (flexible)</li>
+          <li>Primary residence only</li>
+          <li>Reusable benefit for life</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📚 More Calculators</h4>
+        <ul>
+          <li>🏠 <a href="/#calc">Mortgage Calculator</a></li>
+          <li>🏦 <a href="/#equity">Home Equity / HELOC</a></li>
+          <li>💳 <a href="/#debtcon">Debt Consolidation</a></li>
+          <li>📈 <a href="/#dscr">DSCR / Investor</a></li>
+          <li>🔍 <a href="/#finder">Rate Finder</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📖 Related Articles</h4>
+        <ul>
+          <li>🔄 <a href="/heloc-calculator.html">HELOC Calculator Guide</a></li>
+          <li>🏦 <a href="/cash-out-refinance-calculator.html">Cash-Out Refi Guide</a></li>
+          <li>🏠 <a href="/how-much-can-i-borrow-against-my-home.html">How Much Can I Borrow?</a></li>
+          <li>📈 <a href="/dscr-loan-calculator.html">DSCR Loan Guide</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>🎖️ Veteran-Run Business</h4>
+        <ul>
+          <li>25+ years of experience</li>
+          <li>VA loan specialists</li>
+          <li>Licensed in 8 states</li>
+          <li>No pressure — free to ask</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="/">Calculators</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/apply.html">Apply for a Loan</a>
+    </div>
+    <p>myloanbreakdown.com — Free loan calculators for every loan type. Veteran-run. Licensed. 25+ years of experience. Not financial advice. Educational purposes only. Equal Housing Opportunity. HUD Counseling: 1-800-569-4287.</p>
+  </div>
+
+</body>
+</html>

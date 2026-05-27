@@ -14,6 +14,7 @@
     { "src": "/cash-out-refinance-calculator.html",        "dest": "/cash-out-refinance-calculator.html"       },
     { "src": "/how-much-can-i-borrow-against-my-home.html","dest": "/how-much-can-i-borrow-against-my-home.html"},
     { "src": "/heloc-calculator.html",                     "dest": "/heloc-calculator.html"                    },
+    { "src": "/va-loan-calculator.html",                   "dest": "/va-loan-calculator.html"                  },
     { "src": "/(.*)",                                      "dest": "/index.html"                               }
   ]
 }

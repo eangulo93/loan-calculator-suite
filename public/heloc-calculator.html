@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HELOC Calculator: How Much Can I Borrow? (2026 Guide)</title>
+  <meta name="description" content="Use our free HELOC calculator to find out how much you can borrow against your home equity. Learn how HELOCs work, what the 85% CLTV limit means, current HELOC rates, and how to qualify." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f0f4f9; color: #1a2537; line-height: 1.8; }
+    .header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.09); padding: 1rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: #0f1f35; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.75rem; color: #5a6e84; text-decoration: none; font-weight: 500; }
+    .apply-btn { padding: 0.4rem 1rem; background: linear-gradient(135deg,#0284c7,#0ea5e9); color: #fff; border-radius: 7px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+    .article-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; grid-template-columns: 1fr 280px; gap: 2rem; align-items: start; }
+    @media (max-width: 720px) { .article-wrap { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+    article { background: #fff; border-radius: 14px; padding: 2.5rem; border: 1px solid rgba(0,0,0,0.07); }
+    .category-tag { display: inline-block; background: #eff8ff; color: #0284c7; border: 1px solid #bae6fd; border-radius: 5px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; margin-bottom: 1rem; }
+    article h1 { font-size: clamp(1.5rem,3.5vw,2rem); font-weight: 800; color: #0f1f35; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .article-meta { font-size: 0.73rem; color: #8a9ab0; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #edf0f5; }
+    article p { margin-bottom: 1.25rem; font-size: 0.95rem; color: #2a3d52; }
+    article h2 { font-size: 1.25rem; font-weight: 800; color: #0f1f35; margin: 2rem 0 0.75rem; letter-spacing: -0.01em; }
+    article h3 { font-size: 1rem; font-weight: 700; color: #0f1f35; margin: 1.5rem 0 0.5rem; }
+    article a { color: #0284c7; font-weight: 600; }
+    article ul, article ol { margin: 0 0 1.25rem 1.5rem; font-size: 0.95rem; color: #2a3d52; }
+    article ul li, article ol li { margin-bottom: 0.4rem; }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.88rem; }
+    .callout-blue { background: #eff8ff; border-left: 4px solid #0284c7; color: #1e3a5f; }
+    .callout-green { background: #f0fdf4; border-left: 4px solid #059669; color: #14532d; }
+    .callout-yellow { background: #fffbeb; border-left: 4px solid #d97706; color: #78350f; }
+    .callout-red { background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; }
+    .callout strong { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+    th { background: #1e3a5f; color: #fff; padding: 0.65rem 1rem; text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #edf0f5; color: #2a3d52; }
+    tr:nth-child(even) td { background: #f9fbfd; }
+    tr:last-child td { border-bottom: none; }
+    .calc-example { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.75rem; margin: 1.5rem 0; color: #fff; }
+    .calc-example h3 { font-size: 1rem; margin-bottom: 1rem; color: #fff; }
+    .calc-row { display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 0.85rem; }
+    .calc-row:last-child { border-bottom: none; font-weight: 700; font-size: 0.95rem; margin-top: 0.25rem; }
+    .calc-label { color: rgba(255,255,255,0.85); }
+    .calc-value { color: #fff; font-family: monospace; font-weight: 600; }
+    .cta-box { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.75rem; text-align: center; margin: 2rem 0; color: #fff; }
+    .cta-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .cta-box p { font-size: 0.82rem; opacity: 0.88; margin-bottom: 1.1rem; }
+    .cta-box a { display: inline-block; padding: 0.7rem 1.75rem; background: #fff; color: #0284c7; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.88rem; margin: 0.3rem; }
+    .cta-box a.secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 1rem; }
+    .sidebar-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.25rem; }
+    .sidebar-card h4 { font-size: 0.82rem; font-weight: 700; color: #0f1f35; margin-bottom: 0.75rem; }
+    .sidebar-card ul { list-style: none; }
+    .sidebar-card ul li { font-size: 0.75rem; color: #4a6278; padding: 0.35rem 0; border-bottom: 1px solid #edf0f5; display: flex; align-items: center; gap: 0.4rem; }
+    .sidebar-card ul li:last-child { border-bottom: none; }
+    .sidebar-card ul li a { color: #0284c7; text-decoration: none; font-weight: 500; }
+    .sidebar-cta { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.25rem; text-align: center; color: #fff; }
+    .sidebar-cta h4 { font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .sidebar-cta p { font-size: 0.72rem; opacity: 0.85; margin-bottom: 0.85rem; line-height: 1.5; }
+    .sidebar-cta a { display: block; padding: 0.55rem 1rem; background: #fff; color: #0284c7; border-radius: 7px; text-decoration: none; font-weight: 700; font-size: 0.78rem; margin-bottom: 0.4rem; }
+    .sidebar-cta a.outline { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); margin-bottom: 0; }
+    .footer { background: #1e3a5f; padding: 1.25rem 1.5rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .footer-links a { color: #93c5fd; font-size: 0.75rem; text-decoration: none; }
+    .footer p { font-size: 0.62rem; color: #64748b; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <a href="/" class="logo"><span>💰</span><span class="logo-text">My Loan Breakdown</span></a>
+      <div class="nav-links">
+        <a href="/">Calculators</a>
+        <a href="/about.html">About</a>
+        <a href="/apply.html" class="apply-btn">Apply for a Loan →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <article>
+      <span class="category-tag">Home Equity</span>
+      <h1>HELOC Calculator: How Much Can I Borrow? (2026 Guide)</h1>
+      <div class="article-meta">Updated May 2026 · 8 min read · myloanbreakdown.com</div>
+
+      <p>A Home Equity Line of Credit — or HELOC — is one of the most flexible financial tools available to homeowners. You borrow against your home's equity, repay it, and borrow again — like a credit card, but at a fraction of the interest rate. But how much can you actually get, and is a HELOC right for you?</p>
+
+      <p>This guide covers everything you need to know: how lenders calculate your credit limit, what the 85% CLTV rule means in dollars, current HELOC rates, how the draw and repayment periods work, and what you need to qualify in 2026.</p>
+
+      <div class="callout callout-blue">
+        <strong>🧮 Free HELOC Calculator</strong>
+        Enter your home value, mortgage balance, and desired credit limit. Our calculator shows your available equity, maximum HELOC at 85% CLTV, estimated monthly payment during the draw period, and what the payment jumps to during repayment. <a href="/#equity">Use the HELOC Calculator →</a>
+      </div>
+
+      <h2>How Much Can You Borrow with a HELOC?</h2>
+      <p>HELOC credit limits are based on your <strong>Combined Loan-to-Value (CLTV)</strong> ratio — the percentage of your home's value that all loans combined represent. Most lenders cap HELOCs at <strong>85% CLTV</strong>, though some go to 90% for well-qualified borrowers.</p>
+
+      <div class="callout callout-blue">
+        <strong>HELOC Maximum Formula</strong>
+        Maximum HELOC = (Home Value × 85%) − Current Mortgage Balance
+      </div>
+
+      <div class="calc-example">
+        <h3>📊 Example Calculation</h3>
+        <div class="calc-row"><span class="calc-label">Home Value</span><span class="calc-value">$500,000</span></div>
+        <div class="calc-row"><span class="calc-label">× 85% CLTV limit</span><span class="calc-value">$425,000</span></div>
+        <div class="calc-row"><span class="calc-label">− Current Mortgage Balance</span><span class="calc-value">$290,000</span></div>
+        <div class="calc-row"><span class="calc-label">= Maximum HELOC Credit Line</span><span class="calc-value">$135,000</span></div>
+      </div>
+
+      <p>On a $500,000 home with a $290,000 mortgage, at 85% CLTV you could access a HELOC credit line of up to $135,000. You don't need to draw all of it — you can take $20,000 now, repay it, and draw again later.</p>
+
+      <h2>HELOC Limits by Lender Type</h2>
+
+      <table>
+        <thead>
+          <tr><th>Lender Type</th><th>Max CLTV</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Most banks & credit unions</td><td>85%</td><td>Standard limit for primary residences</td></tr>
+          <tr><td>Some credit unions</td><td>90%</td><td>Requires excellent credit (740+) and strong income</td></tr>
+          <tr><td>Investment property HELOC</td><td>70–75%</td><td>Significantly stricter — not all lenders offer this</td></tr>
+          <tr><td>Second home HELOC</td><td>80–85%</td><td>Slightly stricter than primary residence</td></tr>
+        </tbody>
+      </table>
+
+      <h2>How a HELOC Works: Draw Period vs. Repayment Period</h2>
+      <p>A HELOC has two distinct phases — and the payment difference between them catches many borrowers off guard.</p>
+
+      <h3>Draw Period (typically 5–10 years)</h3>
+      <p>During the draw period, you can borrow from and repay the line freely. Most HELOCs require <strong>interest-only payments</strong> during this phase — you pay interest on what you've drawn, not the full credit limit.</p>
+
+      <p><strong>Example:</strong> $50,000 HELOC at 9.0%, draw period payment = $50,000 × 9% ÷ 12 = <strong>$375/month interest only</strong></p>
+
+      <h3>Repayment Period (typically 10–20 years)</h3>
+      <p>When the draw period ends, the line closes and you can no longer borrow. The outstanding balance converts to a fully amortizing loan — meaning you now pay <strong>principal + interest</strong>. The payment jump can be significant.</p>
+
+      <p><strong>Same example:</strong> $50,000 balance, 9.0%, 20-year repayment = <strong>$449/month</strong> — a $74/month increase</p>
+
+      <div class="callout callout-yellow">
+        <strong>⚠️ Payment Shock Warning</strong>
+        If you've drawn heavily on your HELOC during the draw period, the payment increase at repayment can be significant. Our HELOC calculator shows you both payments side by side so you can plan ahead — not be surprised.
+      </div>
+
+      <h2>Current HELOC Rates (May 2026)</h2>
+      <p>HELOC rates are variable and tied to the <strong>Prime Rate</strong> — which moves with Federal Reserve decisions. As of May 2026:</p>
+
+      <table>
+        <thead>
+          <tr><th>Credit Score</th><th>Typical HELOC Rate</th><th>Spread Over Prime</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>760+</td><td>8.75% – 9.25%</td><td>Prime + 0.25–0.75%</td></tr>
+          <tr><td>720–759</td><td>9.25% – 9.75%</td><td>Prime + 0.75–1.25%</td></tr>
+          <tr><td>680–719</td><td>9.75% – 10.50%</td><td>Prime + 1.25–2.0%</td></tr>
+          <tr><td>640–679</td><td>10.50% – 11.50%</td><td>Prime + 2.0–3.0%</td></tr>
+        </tbody>
+      </table>
+
+      <p>The Prime Rate is currently <strong>8.50%</strong> (May 2026). If the Federal Reserve raises rates, your HELOC rate goes up automatically — and so does your payment. This is the core risk of a HELOC vs. a fixed-rate home equity loan.</p>
+
+      <div class="callout callout-blue">
+        <strong>💡 Rate Cap Protection</strong>
+        Most HELOCs have a lifetime rate cap — typically 18% — that limits how high the rate can go. Ask your lender for the lifetime cap AND the periodic cap (how much it can increase per adjustment period). These are negotiable at some lenders.
+      </div>
+
+      <h2>HELOC vs. Home Equity Loan vs. Cash-Out Refi</h2>
+
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>HELOC</th><th>HE Loan</th><th>Cash-Out Refi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Rate type</td><td>Variable</td><td>Fixed</td><td>Fixed</td></tr>
+          <tr><td>Access to funds</td><td>Draw as needed</td><td>Lump sum</td><td>Lump sum at closing</td></tr>
+          <tr><td>Replaces mortgage</td><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Max LTV/CLTV</td><td>85%</td><td>85%</td><td>80%</td></tr>
+          <tr><td>Closing costs</td><td>Low/none</td><td>Low</td><td>2–3% of loan</td></tr>
+          <tr><td>Draw period</td><td>5–10 years</td><td>None</td><td>None</td></tr>
+          <tr><td>Best for</td><td>Ongoing/multiple expenses</td><td>One-time expense</td><td>Rate + cash opportunity</td></tr>
+          <tr><td>Payment risk</td><td>Rate fluctuates</td><td>Fixed — predictable</td><td>Fixed — predictable</td></tr>
+        </tbody>
+      </table>
+
+      <h2>What You Need to Qualify for a HELOC in 2026</h2>
+
+      <h3>Credit Score</h3>
+      <p>Most lenders require a minimum <strong>620 credit score</strong> for a HELOC, but you'll get meaningfully better rates at 720+. For the maximum credit line at the best rate, aim for 740+.</p>
+
+      <h3>Equity Position</h3>
+      <p>You need at least 15% equity remaining after the HELOC (to stay under 85% CLTV). Most lenders also want you to have been on title for at least 6–12 months before applying.</p>
+
+      <h3>Debt-to-Income Ratio</h3>
+      <p>Most HELOC lenders cap total DTI at <strong>43%</strong>. This includes your existing mortgage payment plus the new HELOC payment plus all other monthly debts. Note that lenders often qualify you at the fully drawn amount — not just what you plan to draw — so even an unused credit line affects your DTI qualification.</p>
+
+      <h3>Stable Income</h3>
+      <p>Unlike DSCR loans, HELOCs require income verification. Most lenders want 2 years of W-2s, tax returns, or bank statements for self-employed borrowers. Consistent, documentable income is key.</p>
+
+      <h3>Property Type</h3>
+      <p>Primary residences get the best terms. Second homes and investment properties face lower CLTV limits and higher rates — and not all lenders offer HELOCs on non-primary properties.</p>
+
+      <h2>HELOC Costs: What to Watch For</h2>
+
+      <table>
+        <thead>
+          <tr><th>Fee Type</th><th>Typical Range</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Application fee</td><td>$0–$500</td><td>Many lenders waive this</td></tr>
+          <tr><td>Appraisal fee</td><td>$400–$800</td><td>Some lenders use AVM (no physical visit) for smaller lines</td></tr>
+          <tr><td>Closing costs</td><td>$200–$2,000</td><td>Much lower than a cash-out refi</td></tr>
+          <tr><td>Annual fee</td><td>$0–$100</td><td>Ask upfront — some lenders charge this every year</td></tr>
+          <tr><td>Inactivity fee</td><td>$25–$50/yr</td><td>Charged if you don't draw from the line</td></tr>
+          <tr><td>Early closure fee</td><td>$300–$500</td><td>If you close the HELOC within 2–3 years of opening</td></tr>
+        </tbody>
+      </table>
+
+      <p>Credit unions typically offer the lowest HELOC fees and most competitive rates — especially for members. Check your local credit union before going to a big bank.</p>
+
+      <h2>HELOC Tax Deductibility</h2>
+      <p>HELOC interest may be tax deductible — but only if the funds are used to <strong>buy, build, or substantially improve</strong> the home securing the loan. Using HELOC funds for a home renovation = potentially deductible. Using them to pay off credit cards or take a vacation = not deductible. Consult a tax professional for your specific situation.</p>
+
+      <h2>When a HELOC Makes Sense</h2>
+      <ul>
+        <li><strong>Home renovation in phases</strong> — draw for each phase, repay between phases</li>
+        <li><strong>Emergency fund backup</strong> — open the line now, only pay if you draw</li>
+        <li><strong>Business cash flow</strong> — flexible access for seasonal businesses</li>
+        <li><strong>Bridge financing</strong> — access equity before selling your current home</li>
+        <li><strong>Tuition payments</strong> — draw each semester rather than taking the full amount upfront</li>
+      </ul>
+
+      <h2>When a HELOC Doesn't Make Sense</h2>
+      <ul>
+        <li><strong>You need a fixed, predictable payment</strong> — choose a home equity loan instead</li>
+        <li><strong>You're on a tight budget</strong> — rate increases could strain your payment</li>
+        <li><strong>Your current mortgage rate is low</strong> — a HELOC avoids touching it, which is good, but the HELOC rate itself may be high</li>
+        <li><strong>You want to consolidate debt long-term</strong> — a fixed home equity loan gives more certainty</li>
+      </ul>
+
+      <div class="callout callout-green">
+        <strong>✅ Pro Tip: Open It Before You Need It</strong>
+        HELOCs are much easier to get when you don't urgently need money. If you're employed and have good credit, consider opening a HELOC now as an emergency backstop — you pay nothing until you draw, and having the line available can save you in a financial pinch. You can always close it if you never need it.
+      </div>
+
+      <div class="cta-box">
+        <h3>Calculate Your HELOC Credit Limit Now</h3>
+        <p>Enter your home value and mortgage balance. See your available equity, maximum credit line at 85% CLTV, draw period payment, and repayment period payment — instantly.</p>
+        <a href="/#equity">Use the Free HELOC Calculator</a>
+        <a href="/apply.html" class="secondary">Talk to a Loan Officer →</a>
+      </div>
+
+      <p style="font-size:0.72rem; color:#8a9ab0; margin-top:2rem; padding-top:1rem; border-top:1px solid #edf0f5;">
+        <strong>Disclosure:</strong> This article is for educational purposes only and does not constitute financial or lending advice. HELOC rates and requirements vary by lender and change frequently. The Prime Rate cited reflects May 2026 levels. Always verify current terms with a licensed loan officer before making any borrowing decision. Interest deductibility depends on individual circumstances — consult a tax professional.
+      </p>
+    </article>
+
+    <div class="sidebar">
+      <div class="sidebar-cta">
+        <h4>🔄 Free HELOC Calculator</h4>
+        <p>Find your max credit line and see both draw and repayment period payments.</p>
+        <a href="/#equity">Calculate My HELOC</a>
+        <a href="/apply.html" class="outline">Talk to a Loan Officer</a>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>✅ HELOC Quick Facts</h4>
+        <ul>
+          <li>Max 85% CLTV (primary)</li>
+          <li>Min 620 credit score</li>
+          <li>Variable rate — tied to Prime</li>
+          <li>Interest-only during draw</li>
+          <li>Draw period: 5–10 years</li>
+          <li>Repayment: 10–20 years</li>
+          <li>Low/no closing costs</li>
+          <li>Max 43% DTI typical</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📚 More Calculators</h4>
+        <ul>
+          <li>🏠 <a href="/#calc">Mortgage Calculator</a></li>
+          <li>🏦 <a href="/#equity">Home Equity / Cash-Out</a></li>
+          <li>💳 <a href="/#debtcon">Debt Consolidation</a></li>
+          <li>📈 <a href="/#dscr">DSCR / Investor</a></li>
+          <li>🔍 <a href="/#finder">Rate Finder</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📖 Related Articles</h4>
+        <ul>
+          <li>🏦 <a href="/cash-out-refinance-calculator.html">Cash-Out Refi Guide</a></li>
+          <li>🏠 <a href="/how-much-can-i-borrow-against-my-home.html">How Much Can I Borrow?</a></li>
+          <li>📈 <a href="/dscr-loan-calculator.html">DSCR Loan Guide</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="/">Calculators</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/apply.html">Apply for a Loan</a>
+    </div>
+    <p>myloanbreakdown.com — Free loan calculators for every loan type. Veteran-run. Licensed. 25+ years of experience. Not financial advice. Educational purposes only. HUD Counseling: 1-800-569-4287.</p>
+  </div>
+
+</body>
+</html>

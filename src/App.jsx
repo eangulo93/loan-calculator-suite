@@ -922,6 +922,16 @@ export default function LoanCalcSuite() {
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px,1fr))", gap: "0.75rem" }}>
                 {[
                   {
+                    title: "HELOC Calculator: How Much Can I Borrow?",
+                    desc: "Learn how HELOCs work, what the 85% CLTV limit means in dollars, current rates, and how draw vs repayment periods affect your payment.",
+                    tag: "Home Equity",
+                    color: "#059669",
+                    bg: "#f0fdf4",
+                    border: "#86efac",
+                    href: "/heloc-calculator.html",
+                    time: "8 min read",
+                  },
+                  {
                     title: "DSCR Loan Calculator: How to Qualify Based on Rental Income",
                     desc: "Learn how DSCR loans work, what ratio you need, and how to run the numbers on any rental property.",
                     tag: "Investment Loans",

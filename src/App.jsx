@@ -788,8 +788,8 @@ export default function LoanCalcSuite() {
             <a href="/about.html"   style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>About</a>
             <a href="/privacy.html" style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Privacy</a>
             <a href="/terms.html"   style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Terms</a>
+           <a href="/resources.html" style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Guides</a>
             <a href="/apply.html" style={{ display: "inline-block", padding: "0.45rem 1.1rem", background: "linear-gradient(135deg,#0284c7,#0ea5e9)", color: "#fff", borderRadius: "7px", textDecoration: "none", fontSize: "0.78rem", fontWeight: 700 }}>Apply for a Loan →</a>
-            <a href="/resources.html" style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Guides</a>
           </div>
         </div>
       </div>

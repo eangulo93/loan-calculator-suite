@@ -808,7 +808,12 @@ export default function LoanCalcSuite() {
           ))}
         </div>
       </div>
-
+{/* SEO intro text for Google */}
+<div style={{ maxWidth: 1100, margin: "0 auto", padding: "1rem 1rem 0" }}>
+  <p style={{ fontSize: "0.78rem", color: S.muted, lineHeight: 1.7, maxWidth: 800 }}>
+    Free loan calculators for mortgage, HELOC, home equity, cash-out refinance, DSCR investment loans, debt consolidation, FHA, VA, USDA, jumbo, ARM, and 20+ more loan types. Live rates updated weekly from Freddie Mac. Full amortization schedules, DTI qualification limits, and PMI calculations — all free, no account required.
+  </p>
+</div>
       {/* Top Banner Ad */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0.5rem 1rem 0" }}>
         <AdUnit slot="ca-pub-9247721766299360" />

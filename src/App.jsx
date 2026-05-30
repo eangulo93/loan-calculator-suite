@@ -927,6 +927,16 @@ export default function LoanCalcSuite() {
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px,1fr))", gap: "0.75rem" }}>
                 {[
                   {
+                    title: "FHA Loan Calculator: Low Down Payment Guide",
+                    desc: "Learn FHA mortgage insurance costs, loan limits, credit score requirements, and when FHA makes more sense than conventional.",
+                    tag: "FHA Loans",
+                    color: "#b45309",
+                    bg: "#fffbeb",
+                    border: "#fcd34d",
+                    href: "/fha-loan-calculator.html",
+                    time: "8 min read",
+                  },
+                  {
                     title: "HELOC Calculator: How Much Can I Borrow?",
                     desc: "Learn how HELOCs work, what the 85% CLTV limit means in dollars, current rates, and how draw vs repayment periods affect your payment.",
                     tag: "Home Equity",

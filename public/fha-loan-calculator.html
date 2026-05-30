@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FHA Loan Calculator: Low Down Payment Guide (2026)</title>
+  <meta name="description" content="Use our free FHA loan calculator to estimate your payment with 3.5% down. Learn FHA mortgage insurance costs, loan limits, credit score requirements, and when FHA makes more sense than conventional." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f0f4f9; color: #1a2537; line-height: 1.8; }
+    .header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.09); padding: 1rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: #0f1f35; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.75rem; color: #5a6e84; text-decoration: none; font-weight: 500; }
+    .apply-btn { padding: 0.4rem 1rem; background: linear-gradient(135deg,#0284c7,#0ea5e9); color: #fff; border-radius: 7px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+    .article-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; grid-template-columns: 1fr 280px; gap: 2rem; align-items: start; }
+    @media (max-width: 720px) { .article-wrap { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+    article { background: #fff; border-radius: 14px; padding: 2.5rem; border: 1px solid rgba(0,0,0,0.07); }
+    .category-tag { display: inline-block; background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; border-radius: 5px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; margin-bottom: 1rem; }
+    article h1 { font-size: clamp(1.5rem,3.5vw,2rem); font-weight: 800; color: #0f1f35; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .article-meta { font-size: 0.73rem; color: #8a9ab0; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #edf0f5; }
+    article p { margin-bottom: 1.25rem; font-size: 0.95rem; color: #2a3d52; }
+    article h2 { font-size: 1.25rem; font-weight: 800; color: #0f1f35; margin: 2rem 0 0.75rem; letter-spacing: -0.01em; }
+    article h3 { font-size: 1rem; font-weight: 700; color: #0f1f35; margin: 1.5rem 0 0.5rem; }
+    article a { color: #0284c7; font-weight: 600; }
+    article ul, article ol { margin: 0 0 1.25rem 1.5rem; font-size: 0.95rem; color: #2a3d52; }
+    article ul li, article ol li { margin-bottom: 0.4rem; }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.88rem; }
+    .callout-blue { background: #eff8ff; border-left: 4px solid #0284c7; color: #1e3a5f; }
+    .callout-green { background: #f0fdf4; border-left: 4px solid #059669; color: #14532d; }
+    .callout-yellow { background: #fffbeb; border-left: 4px solid #d97706; color: #78350f; }
+    .callout-red { background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; }
+    .callout strong { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+    th { background: #1e3a5f; color: #fff; padding: 0.65rem 1rem; text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #edf0f5; color: #2a3d52; }
+    tr:nth-child(even) td { background: #f9fbfd; }
+    tr:last-child td { border-bottom: none; }
+    .mip-box { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .mip-box h3 { font-size: 1rem; font-weight: 700; color: #78350f; margin-bottom: 0.75rem; }
+    .mip-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #fcd34d; font-size: 0.85rem; }
+    .mip-row:last-child { border-bottom: none; font-weight: 700; }
+    .mip-label { color: #92400e; }
+    .mip-value { color: #78350f; font-family: monospace; font-weight: 600; }
+    .cta-box { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.75rem; text-align: center; margin: 2rem 0; color: #fff; }
+    .cta-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .cta-box p { font-size: 0.82rem; opacity: 0.88; margin-bottom: 1.1rem; }
+    .cta-box a { display: inline-block; padding: 0.7rem 1.75rem; background: #fff; color: #0284c7; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.88rem; margin: 0.3rem; }
+    .cta-box a.secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 1rem; }
+    .sidebar-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.25rem; }
+    .sidebar-card h4 { font-size: 0.82rem; font-weight: 700; color: #0f1f35; margin-bottom: 0.75rem; }
+    .sidebar-card ul { list-style: none; }
+    .sidebar-card ul li { font-size: 0.75rem; color: #4a6278; padding: 0.35rem 0; border-bottom: 1px solid #edf0f5; display: flex; align-items: center; gap: 0.4rem; }
+    .sidebar-card ul li:last-child { border-bottom: none; }
+    .sidebar-card ul li a { color: #0284c7; text-decoration: none; font-weight: 500; }
+    .sidebar-cta { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 12px; padding: 1.25rem; text-align: center; color: #fff; }
+    .sidebar-cta h4 { font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .sidebar-cta p { font-size: 0.72rem; opacity: 0.85; margin-bottom: 0.85rem; line-height: 1.5; }
+    .sidebar-cta a { display: block; padding: 0.55rem 1rem; background: #fff; color: #0284c7; border-radius: 7px; text-decoration: none; font-weight: 700; font-size: 0.78rem; margin-bottom: 0.4rem; }
+    .sidebar-cta a.outline { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); margin-bottom: 0; }
+    .footer { background: #1e3a5f; padding: 1.25rem 1.5rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .footer-links a { color: #93c5fd; font-size: 0.75rem; text-decoration: none; }
+    .footer p { font-size: 0.62rem; color: #64748b; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <a href="/" class="logo"><span>💰</span><span class="logo-text">My Loan Breakdown</span></a>
+      <div class="nav-links">
+        <a href="/">Calculators</a>
+        <a href="/about.html">About</a>
+        <a href="/apply.html" class="apply-btn">Apply for a Loan →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <article>
+      <span class="category-tag">FHA Loans</span>
+      <h1>FHA Loan Calculator: Low Down Payment Guide (2026)</h1>
+      <div class="article-meta">Updated May 2026 · 8 min read · myloanbreakdown.com</div>
+
+      <p>FHA loans are the go-to option for first-time homebuyers and anyone with less-than-perfect credit. With just 3.5% down and credit scores as low as 580, FHA opens the door to homeownership for millions of Americans who can't qualify for conventional financing. But FHA comes with costs that many buyers don't fully understand until closing day — primarily mortgage insurance that lasts the life of the loan.</p>
+
+      <p>This guide covers everything: how to calculate your FHA payment, what mortgage insurance actually costs, the loan limits for 2026, and — critically — when FHA makes sense and when you'd be better off with a conventional loan.</p>
+
+      <div class="callout callout-blue">
+        <strong>🧮 Free FHA Loan Calculator</strong>
+        Enter your purchase price, down payment, and credit score. Our calculator shows your exact FHA payment including upfront MIP, annual MIP, and how it compares to a conventional loan with PMI. <a href="/#calc">Use the FHA Loan Calculator →</a>
+      </div>
+
+      <h2>FHA Loan Basics: What Makes It Different</h2>
+      <p>FHA loans are insured by the Federal Housing Administration — a division of HUD. Because the government backs the loan, lenders can approve borrowers with lower credit scores and smaller down payments than conventional guidelines allow. In exchange, borrowers pay mortgage insurance premiums (MIP) that fund the FHA insurance program.</p>
+
+      <h3>Key FHA Advantages</h3>
+      <ul>
+        <li><strong>3.5% minimum down payment</strong> at 580+ credit score</li>
+        <li><strong>10% down option</strong> for credit scores 500–579</li>
+        <li><strong>Higher DTI allowed</strong> — up to 57% back-end DTI with compensating factors</li>
+        <li><strong>Gift funds allowed</strong> for the entire down payment</li>
+        <li><strong>More flexible</strong> on recent credit events (bankruptcy, foreclosure)</li>
+        <li><strong>Assumable</strong> — a buyer can take over your FHA loan when you sell</li>
+      </ul>
+
+      <h2>FHA Mortgage Insurance: The Full Cost</h2>
+      <p>This is where FHA buyers are often surprised. FHA requires two types of mortgage insurance:</p>
+
+      <div class="mip-box">
+        <h3>⚠️ FHA Mortgage Insurance on a $400,000 Purchase (3.5% down)</h3>
+        <div class="mip-row"><span class="mip-label">Loan Amount</span><span class="mip-value">$386,000</span></div>
+        <div class="mip-row"><span class="mip-label">Upfront MIP (1.75% of loan, rolled in)</span><span class="mip-value">$6,755</span></div>
+        <div class="mip-row"><span class="mip-label">New Loan after UFMIP</span><span class="mip-value">$392,755</span></div>
+        <div class="mip-row"><span class="mip-label">Annual MIP (0.55%/yr on this loan)</span><span class="mip-value">$2,161/yr = $180/mo</span></div>
+        <div class="mip-row"><span class="mip-label">Duration of Annual MIP</span><span class="mip-value">Life of loan (if &lt;10% down)</span></div>
+        <div class="mip-row"><span class="mip-label">Total MIP over 30 years</span><span class="mip-value">~$54,900 + UFMIP</span></div>
+      </div>
+
+      <h3>Upfront MIP (UFMIP)</h3>
+      <p>1.75% of the base loan amount, charged at closing. Almost always rolled into the loan — so you don't pay it out of pocket, but you do pay interest on it for the life of the loan.</p>
+
+      <h3>Annual MIP</h3>
+      <p>Paid monthly as part of your mortgage payment. The rate depends on your loan term, loan amount, and LTV:</p>
+
+      <table>
+        <thead>
+          <tr><th>Loan Term</th><th>LTV</th><th>Annual MIP Rate</th><th>Duration</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>30-year</td><td>&gt;90% (less than 10% down)</td><td>0.55%</td><td>Life of loan</td></tr>
+          <tr><td>30-year</td><td>≤90% (10%+ down)</td><td>0.50%</td><td>11 years</td></tr>
+          <tr><td>15-year</td><td>&gt;90%</td><td>0.40%</td><td>Life of loan</td></tr>
+          <tr><td>15-year</td><td>≤90%</td><td>0.15%</td><td>11 years</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-red">
+        <strong>⚠️ The Lifetime MIP Problem</strong>
+        If you put less than 10% down on an FHA loan, the annual MIP never goes away — unlike conventional PMI which cancels automatically at 80% LTV. On a 30-year loan, that's 360 payments of mortgage insurance. This is the single biggest reason to choose conventional over FHA when you qualify for both.
+      </div>
+
+      <h2>FHA Loan Limits 2026</h2>
+      <p>FHA loan limits are set by county and updated annually. For 2026:</p>
+
+      <table>
+        <thead>
+          <tr><th>Area Type</th><th>1-Unit</th><th>2-Unit</th><th>3-Unit</th><th>4-Unit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Low-cost areas (floor)</strong></td><td>$524,225</td><td>$671,200</td><td>$811,275</td><td>$1,008,300</td></tr>
+          <tr><td><strong>High-cost areas (ceiling)</strong></td><td>$1,209,750</td><td>$1,548,975</td><td>$1,872,225</td><td>$2,326,875</td></tr>
+        </tbody>
+      </table>
+
+      <p>Check your specific county limit at <strong>hud.gov</strong>. In most major metro areas like Los Angeles, San Francisco, Miami, and Denver, FHA limits are at or near the high-cost ceiling — giving you significant purchasing power.</p>
+
+      <h2>FHA Credit Score Requirements</h2>
+
+      <table>
+        <thead>
+          <tr><th>Credit Score</th><th>Min Down Payment</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>580+</td><td>3.5%</td><td>Standard FHA — most lenders participate</td></tr>
+          <tr><td>500–579</td><td>10%</td><td>Fewer lenders offer this — expect higher rates</td></tr>
+          <tr><td>Below 500</td><td>Not eligible</td><td>FHA minimum is 500</td></tr>
+        </tbody>
+      </table>
+
+      <p>HUD allows lenders to go down to 500, but most lenders set their own overlays — minimums of 580, 600, or even 620. If your score is below 580, expect to shop harder for a willing lender and put 10% down.</p>
+
+      <h2>FHA DTI Limits: More Flexible Than You Think</h2>
+      <p>FHA is significantly more flexible on debt-to-income ratio than conventional loans:</p>
+
+      <ul>
+        <li><strong>Standard:</strong> 31% front-end DTI (housing only) / 43% back-end DTI (all debts)</li>
+        <li><strong>With compensating factors:</strong> Up to 57% back-end DTI (HUD 4000.1)</li>
+        <li><strong>Compensating factors include:</strong> Residual income, large down payment, minimal payment shock, significant reserves</li>
+      </ul>
+
+      <p>A borrower with a 55% DTI, 620 credit score, and strong compensating factors can get FHA approval — something no conventional lender would touch.</p>
+
+      <h2>Current FHA Rates (May 2026)</h2>
+      <p>FHA rates run slightly below conventional but above VA:</p>
+
+      <table>
+        <thead>
+          <tr><th>Loan Type</th><th>30yr Rate (avg)</th><th>15yr Rate (avg)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>FHA</strong></td><td><strong>6.19% – 6.50%</strong></td><td><strong>5.61% – 5.90%</strong></td></tr>
+          <tr><td>Conventional</td><td>6.36% – 6.75%</td><td>5.71% – 6.10%</td></tr>
+          <tr><td>VA</td><td>5.75% – 6.25%</td><td>5.25% – 5.75%</td></tr>
+        </tbody>
+      </table>
+
+      <p>The lower FHA rate is partially offset by the monthly MIP. The net effective cost of an FHA loan vs. conventional depends on your specific credit score, LTV, and how long you plan to keep the loan.</p>
+
+      <h2>FHA vs. Conventional: Which Is Cheaper?</h2>
+      <p>The answer depends on your credit score and down payment. Here's the general framework:</p>
+
+      <table>
+        <thead>
+          <tr><th>Scenario</th><th>Better Option</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Credit score below 620, 3.5% down</td><td>FHA</td><td>Won't qualify for competitive conventional rates</td></tr>
+          <tr><td>Credit score 620–679, 3–10% down</td><td>FHA (usually)</td><td>FHA MIP may be cheaper than high-rate conventional PMI</td></tr>
+          <tr><td>Credit score 680+, 5%+ down</td><td>Conventional</td><td>PMI cancels; FHA MIP is for life</td></tr>
+          <tr><td>Credit score 740+, any down</td><td>Conventional</td><td>Best conventional rates far outperform FHA net cost</td></tr>
+          <tr><td>Veteran, any score</td><td>VA loan</td><td>No PMI or MIP, lowest rates — VA wins every time</td></tr>
+          <tr><td>Rural area, income limits qualify</td><td>USDA</td><td>Zero down, lower MIP than FHA, comparable rates</td></tr>
+        </tbody>
+      </table>
+
+      <h2>The FHA MIP Escape: Refinancing Out</h2>
+      <p>If you took an FHA loan with less than 10% down, you're stuck with MIP for the life of the loan — unless you refinance into a conventional loan once you have enough equity.</p>
+
+      <p>The magic number: once your home's value gives you <strong>20% equity</strong>, you can refinance to conventional with no PMI. If home values have appreciated since you bought, this can happen faster than you'd expect.</p>
+
+      <p><strong>Example:</strong> You bought at $400,000 with 3.5% down in 2023. Home is now worth $460,000. Your loan balance is ~$375,000. LTV = 375 ÷ 460 = 81.5%. Still slightly above 80%, but close. A few more months of payments or a small amount of appreciation gets you to 80% — then you refinance to conventional, MIP disappears, and you save $150–$200/month permanently.</p>
+
+      <div class="callout callout-green">
+        <strong>✅ FHA Strategy: Buy Now, Refinance Later</strong>
+        Many buyers use FHA to get into a home sooner with lower down payment requirements, then refinance to conventional once they've built 20% equity. It's a legitimate strategy — you pay MIP for a few years in exchange for homeownership years earlier than if you waited to save 20% down.
+      </div>
+
+      <h2>FHA Streamline Refinance</h2>
+      <p>Already have an FHA loan? The FHA Streamline Refi lets you refinance to a lower rate with minimal documentation — no appraisal required, reduced income verification, and faster processing. You must have made at least 6 payments on your current FHA loan and there must be a tangible benefit (lower rate or shorter term).</p>
+
+      <p>The new MIP rates apply to the streamlined loan — so if MIP rates have dropped since you got your original FHA loan, a streamline refi can lower both your rate and your MIP simultaneously.</p>
+
+      <h2>FHA Property Requirements</h2>
+      <p>FHA has minimum property standards that conventional loans don't. The FHA appraiser checks that the property is safe, sound, and secure. Common FHA issues that can derail a deal:</p>
+
+      <ul>
+        <li>Peeling paint (especially on homes built before 1978 — lead paint concern)</li>
+        <li>Missing handrails on stairs</li>
+        <li>Roof with less than 2 years of useful life remaining</li>
+        <li>Cracked or broken windows</li>
+        <li>No permanent heat source</li>
+        <li>Evidence of structural issues or water damage</li>
+      </ul>
+
+      <p>In competitive markets, some sellers prefer conventional offers over FHA because of these stricter property requirements. If this is a concern, consider whether you could qualify for conventional instead.</p>
+
+      <div class="cta-box">
+        <h3>Calculate Your FHA Payment Now</h3>
+        <p>See your exact payment with 3.5% down, upfront MIP, monthly MIP, and how it compares to a conventional loan — side by side.</p>
+        <a href="/#calc">Use the FHA Loan Calculator</a>
+        <a href="/apply.html" class="secondary">Talk to a Loan Officer →</a>
+      </div>
+
+      <p style="font-size:0.72rem; color:#8a9ab0; margin-top:2rem; padding-top:1rem; border-top:1px solid #edf0f5;">
+        <strong>Disclosure:</strong> This article is for educational purposes only and does not constitute financial or lending advice. FHA loan limits, MIP rates, and requirements are set by HUD and subject to change. Rates cited reflect market conditions as of May 2026. Always verify current FHA guidelines and rates with a licensed loan officer before making any borrowing decision.
+      </p>
+    </article>
+
+    <div class="sidebar">
+      <div class="sidebar-cta">
+        <h4>🏠 Free FHA Calculator</h4>
+        <p>See your 3.5% down payment, MIP costs, and comparison to conventional.</p>
+        <a href="/#calc">Calculate FHA Payment</a>
+        <a href="/apply.html" class="outline">Talk to a Loan Officer</a>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>✅ FHA Quick Facts</h4>
+        <ul>
+          <li>3.5% down (580+ score)</li>
+          <li>10% down (500–579 score)</li>
+          <li>1.75% upfront MIP</li>
+          <li>0.55% annual MIP (30yr)</li>
+          <li>MIP for life if &lt;10% down</li>
+          <li>Up to 57% back-end DTI</li>
+          <li>Gift funds allowed</li>
+          <li>2026 limit: $524,225–$1.2M</li>
+          <li>Primary residence only</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📚 More Calculators</h4>
+        <ul>
+          <li>🏠 <a href="/#calc">Mortgage Calculator</a></li>
+          <li>🏦 <a href="/#equity">Home Equity / HELOC</a></li>
+          <li>💳 <a href="/#debtcon">Debt Consolidation</a></li>
+          <li>📈 <a href="/#dscr">DSCR / Investor</a></li>
+          <li>🔍 <a href="/#finder">Rate Finder</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>📖 Related Articles</h4>
+        <ul>
+          <li>🎖️ <a href="/va-loan-calculator.html">VA Loan Guide</a></li>
+          <li>🔄 <a href="/heloc-calculator.html">HELOC Calculator Guide</a></li>
+          <li>🏦 <a href="/cash-out-refinance-calculator.html">Cash-Out Refi Guide</a></li>
+          <li>🏠 <a href="/how-much-can-i-borrow-against-my-home.html">How Much Can I Borrow?</a></li>
+          <li>📈 <a href="/dscr-loan-calculator.html">DSCR Loan Guide</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="/">Calculators</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/apply.html">Apply for a Loan</a>
+    </div>
+    <p>myloanbreakdown.com — Free loan calculators for every loan type. Veteran-run. Licensed. 25+ years of experience. Not financial advice. Educational purposes only. Equal Housing Opportunity. HUD Counseling: 1-800-569-4287.</p>
+  </div>
+
+</body>
+</html>

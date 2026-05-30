@@ -16,6 +16,7 @@
     { "src": "/heloc-calculator.html",                     "dest": "/heloc-calculator.html"                    },
     { "src": "/va-loan-calculator.html",                   "dest": "/va-loan-calculator.html"                  },
     { "src": "/fha-loan-calculator.html",                  "dest": "/fha-loan-calculator.html"                 },
+    { "src": "/resources.html",                            "dest": "/resources.html"                           },
     { "src": "/(.*)",                                      "dest": "/index.html"                               }
   ]
 }

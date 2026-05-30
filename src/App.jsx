@@ -789,6 +789,7 @@ export default function LoanCalcSuite() {
             <a href="/privacy.html" style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Privacy</a>
             <a href="/terms.html"   style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Terms</a>
             <a href="/apply.html" style={{ display: "inline-block", padding: "0.45rem 1.1rem", background: "linear-gradient(135deg,#0284c7,#0ea5e9)", color: "#fff", borderRadius: "7px", textDecoration: "none", fontSize: "0.78rem", fontWeight: 700 }}>Apply for a Loan →</a>
+            <a href="/resources.html" style={{ fontSize: "0.73rem", color: S.muted, textDecoration: "none", fontWeight: 500 }}>Guides</a>
           </div>
         </div>
       </div>
@@ -2571,7 +2572,8 @@ export default function LoanCalcSuite() {
           <a href="/about.html"   style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>About</a>
           <a href="/contact.html" style={{ fontSize: "0.78rem", color: "#93c5fd", textDecoration: "none" }}>Contact</a>
           <a href="/privacy.html" style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>Privacy Policy</a>
-          <a href="/terms.html"   style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>Terms of Use</a>
+          <a href="/resources.html" style={{ fontSize: "0.78rem", color: "#93c5fd", textDecoration: "none" }}>Guides</a>
+         <a href="/terms.html"   style={{ fontSize: "0.72rem", color: "#0284c7", textDecoration: "none" }}>Terms of Use</a>
         </div>
         <p style={{ fontSize: "0.6rem", color: "#8a9ab0", margin: 0, lineHeight: 1.7, maxWidth: 800, marginInline: "auto" }}>
           <div style={{ background: "linear-gradient(135deg,#eff8ff,#e0f2fe)", border: "1px solid #bae6fd", borderRadius: "12px", padding: "1.25rem 1.5rem", marginTop: "1rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>

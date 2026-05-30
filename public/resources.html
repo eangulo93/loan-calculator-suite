@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage & Loan Guides — My Loan Breakdown</title>
+  <meta name="description" content="Free mortgage and loan guides covering DSCR, cash-out refinance, HELOC, VA loans, FHA loans, debt consolidation, and home equity. Written by licensed mortgage professionals with 25+ years of experience." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f0f4f9; color: #1a2537; line-height: 1.8; }
+    .header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.09); padding: 1rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .header-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: #0f1f35; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.75rem; color: #5a6e84; text-decoration: none; font-weight: 500; }
+    .apply-btn { padding: 0.4rem 1rem; background: linear-gradient(135deg,#0284c7,#0ea5e9); color: #fff; border-radius: 7px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+
+    .hero { background: linear-gradient(135deg,#1e3a5f,#0284c7); padding: 2.5rem 1.5rem; text-align: center; color: #fff; }
+    .hero h1 { font-size: clamp(1.6rem,3.5vw,2.2rem); font-weight: 800; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+    .hero p { font-size: 0.95rem; opacity: 0.88; max-width: 580px; margin: 0 auto 1rem; line-height: 1.6; }
+    .hero-badges { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 20px; }
+
+    .main { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+    .section-header { margin-bottom: 1.25rem; }
+    .section-header h2 { font-size: 1.15rem; font-weight: 800; color: #0f1f35; margin-bottom: 0.25rem; }
+    .section-header p { font-size: 0.78rem; color: #5a6e84; }
+
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1rem; margin-bottom: 3rem; }
+
+    .article-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1.5rem; text-decoration: none; display: block; transition: box-shadow 0.15s, transform 0.1s; }
+    .article-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+    .card-tag { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.18rem 0.55rem; border-radius: 4px; }
+    .card-time { font-size: 0.62rem; color: #8a9ab0; }
+    .card-title { font-size: 0.92rem; font-weight: 700; color: #0f1f35; line-height: 1.35; margin-bottom: 0.5rem; }
+    .card-desc { font-size: 0.75rem; color: #5a6e84; line-height: 1.55; margin-bottom: 0.85rem; }
+    .card-link { font-size: 0.73rem; color: #0284c7; font-weight: 600; }
+
+    .calculators-section { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 2rem; margin-bottom: 2rem; }
+    .calculators-section h2 { font-size: 1.15rem; font-weight: 800; color: #0f1f35; margin-bottom: 0.25rem; }
+    .calculators-section p { font-size: 0.78rem; color: #5a6e84; margin-bottom: 1.25rem; }
+    .calc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 0.75rem; }
+    .calc-pill { background: #eff8ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 0.75rem 1rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: background 0.12s; }
+    .calc-pill:hover { background: #e0f2fe; }
+    .calc-pill .icon { font-size: 1.1rem; }
+    .calc-pill .text { font-size: 0.75rem; font-weight: 600; color: #0284c7; line-height: 1.3; }
+
+    .trust-section { background: linear-gradient(135deg,#1e3a5f,#0f172a); border-radius: 14px; padding: 2rem; color: #fff; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 600px) { .trust-section { grid-template-columns: 1fr; } }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .trust-number { font-size: 1.8rem; font-weight: 900; font-family: monospace; color: #93c5fd; }
+    .trust-label { font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .cta-section { background: linear-gradient(135deg,#1e3a5f,#0284c7); border-radius: 14px; padding: 2rem; text-align: center; color: #fff; }
+    .cta-section h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .cta-section p { opacity: 0.88; font-size: 0.85rem; margin-bottom: 1.25rem; }
+    .cta-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .cta-buttons a { padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.85rem; }
+    .btn-white { background: #fff; color: #0284c7; }
+    .btn-outline { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+    .footer { background: #1e3a5f; padding: 1.25rem 1.5rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .footer-links a { color: #93c5fd; font-size: 0.75rem; text-decoration: none; }
+    .footer p { font-size: 0.62rem; color: #64748b; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <a href="/" class="logo"><span>💰</span><span class="logo-text">My Loan Breakdown</span></a>
+      <div class="nav-links">
+        <a href="/">Calculators</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/apply.html" class="apply-btn">Apply for a Loan →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Mortgage & Loan Guides</h1>
+    <p>Free guides written by licensed mortgage professionals with 25+ years of experience. Real numbers, real formulas, no fluff.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">🎖️ Veteran-Run</span>
+      <span class="hero-badge">📋 Licensed Professionals</span>
+      <span class="hero-badge">✅ Always Free</span>
+      <span class="hero-badge">📊 Live Market Rates</span>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="trust-section">
+      <div class="trust-item">
+        <div class="trust-icon">⏱️</div>
+        <div class="trust-number">25+</div>
+        <div class="trust-label">Years of Experience</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📋</div>
+        <div class="trust-number">20+</div>
+        <div class="trust-label">Loan Types Covered</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📍</div>
+        <div class="trust-number">8</div>
+        <div class="trust-label">Licensed States</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2>All Guides</h2>
+      <p>Click any guide to read the full article with calculations, tables, and expert analysis.</p>
+    </div>
+
+    <div class="articles-grid">
+
+      <a href="/heloc-calculator.html" class="article-card">
+        <div class="card-top">
+          <span class="card-tag" style="background:#eff8ff; color:#0284c7; border:1px solid #bae6fd;">Home Equity</span>
+          <span class="card-time">8 min read</span>
+        </div>
+        <div class="card-title">HELOC Calculator: How Much Can I Borrow?</div>
+        <div class="card-desc">Learn how HELOCs work, what the 85% CLTV limit means in dollars, current rates, draw vs repayment periods, and what you need to qualify in 2026.</div>
+        <div class="card-link">Read guide →</div>
+      </a>
+
+      <a href="/cash-out-refinance-calculator.html" class="article-card">
+        <div class="card-top">
+          <span class="card-tag" style="background:#f0fdf4; color:#059669; border:1px solid #86efac;">Home Equity</span>
+          <span class="card-time">7 min read</span>
+        </div>
+        <div class="card-title">Cash-Out Refinance Calculator: How Much Can You Pull Out?</div>
+        <div class="card-desc">Learn the LTV rules for all loan types — conventional, FHA, VA, jumbo, DSCR — how your new payment is calculated, and when a cash-out refi makes sense vs. a HELOC.</div>
+        <div class="card-link">Read guide →</div>
+      </a>
+
+      <a href="/how-much-can-i-borrow-against-my-home.html" class="article-card">
+        <div class="card-top">
+          <span class="card-tag" style="background:#eff8ff; color:#0284c7; border:1px solid #bae6fd;">Home Equity</span>
+          <span class="card-time">7 min read</span>
+        </div>
+        <div class="card-title">How Much Can I Borrow Against My Home?</div>
+        <div class="card-desc">The complete guide to home equity borrowing — CLTV formula, LTV limits by product, credit score impact, and which option is right for your situation.</div>
+        <div class="card-link">Read guide →</div>
+      </a>
+
+      <a href="/debt-consolidation-home-equity.html" class="article-card">
+        <div class="card-top">
+          <span class="card-tag" style="background:#eff8ff; color:#0284c7; border:1px solid #bae6fd;">Debt Consolidation</span>
+          <span class="card-time">8 min read</span>
+        </div>
+        <div class="card-title">Debt Consolidation with Home Equity: Is It Worth It?</div>
+        <div class="card-desc">See exactly how much you could save replacing high-interest debt with one home equity payment. Real math, real risks, real answers.</div>
+        <div class="card-link">Read guide →</div>
+      </a>
+
+      <a href="/va-loan-calculator.html" class="article-card">
+        <div class="card-top">
+          <span class="card-tag" style="background:#f0fdf4; color:#059669; border:1px solid #86efac;">VA Loans</span>
+          <span class="card-time">8 min read</span>
+        </div>
+        <div class="card-title">VA Loan Calculator: Zero Down for Veterans</div>
+        <div class="card-desc">How VA loans work, funding fee tables, eligibility requirements, residual income test, and how VA rates compare to conventional and FHA in 2026.</div>
+        <div class="card-link">Read guide →</div>
+      </a>
+
+      <a href="/fha-loan-calculator.html" class="article-card">
+        <div class="card-top">
+          <span class="card-tag" style="background:#fffbeb; color:#b45309; border:1px solid #fcd34d;">FHA Loans</span>
+          <span class="card-time">8 min read</span>
+        </div>
+        <div class="card-title">FHA Loan Calculator: Low Down Payment Guide</div>
+        <div class="card-desc">FHA mortgage insurance costs, loan limits, credit score requirements, and when FHA makes more sense than conventional — with real payment comparisons.</div>
+        <div class="card-link">Read guide →</div>
+      </a>
+
+      <a href="/dscr-loan-calculator.html" class="article-card">
+        <div class="card-top">
+          <span class="card-tag" style="background:#fff7ed; color:#b45309; border:1px solid #fdba74;">Investment Loans</span>
+          <span class="card-time">6 min read</span>
+        </div>
+        <div class="card-title">DSCR Loan Calculator: How to Qualify Based on Rental Income</div>
+        <div class="card-desc">How DSCR loans work, what ratio you need for approval, lender tiers, and how to run the numbers on any rental property before making an offer.</div>
+        <div class="card-link">Read guide →</div>
+      </a>
+
+    </div>
+
+    <div class="calculators-section">
+      <h2>🧮 Free Loan Calculators</h2>
+      <p>All calculators are free — no account required. Live rates updated weekly from Freddie Mac.</p>
+      <div class="calc-grid">
+        <a href="/#calc" class="calc-pill"><span class="icon">🏠</span><span class="text">Mortgage Calculator</span></a>
+        <a href="/#equity" class="calc-pill"><span class="icon">🏦</span><span class="text">Equity Calculator</span></a>
+        <a href="/#debtcon" class="calc-pill"><span class="icon">💳</span><span class="text">Debt Consolidation</span></a>
+        <a href="/#dscr" class="calc-pill"><span class="icon">📈</span><span class="text">DSCR / Investor</span></a>
+        <a href="/#finder" class="calc-pill"><span class="icon">🔍</span><span class="text">Rate Finder</span></a>
+        <a href="/#rates" class="calc-pill"><span class="icon">📊</span><span class="text">Live Market Rates</span></a>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Talk to a Real Person?</h2>
+      <p>Licensed loan officers with 25+ years of experience. Serving CA, NV, LA, TX, AZ, FL, TN, and CO. No pressure, no obligation.</p>
+      <div class="cta-buttons">
+        <a href="/apply.html" class="btn-white">Apply for a Loan →</a>
+        <a href="/contact.html" class="btn-outline">Contact Us →</a>
+        <a href="/" class="btn-outline">Use the Calculators →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="/">Calculators</a>
+      <a href="/resources.html">Guides</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/apply.html">Apply for a Loan</a>
+    </div>
+    <p>myloanbreakdown.com — Free loan calculators and guides for every loan type. Veteran-run. Licensed. 25+ years of experience. Not financial advice. Educational purposes only. HUD Counseling: 1-800-569-4287.</p>
+  </div>
+
+</body>
+</html>
